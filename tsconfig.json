@@ -12,5 +12,5 @@
       "router/*": ["src/router/*"],
       "css/*": ["src/css/*"]
     }
-  },
+  }
 }
