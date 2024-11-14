@@ -23,8 +23,8 @@
     <div class="checkbox-container">
       <label
         class="checkbox"
-        v-for="option in options"
-        :key="option"
+        v-for="(option, index) in options"
+        :key="index"
         :for="option"
       >
         <input
@@ -34,7 +34,7 @@
           :value="option"
           v-model="modelValue"
         />
-        <span> {{ option }}</span>
+        <span>{{ option }}</span>
       </label>
     </div>
   </template>
@@ -63,11 +63,23 @@ const props = defineProps({
     type: String,
     default: "text",
   },
-  label: String,
-  placeholder: String,
-  tag: String,
-  value: [String, Number, null, undefined],
-  options: Array<String>,
+  label: {
+    type: String,
+    default: "",
+  },
+  placeholder: {
+    type: String,
+    default: "",
+  },
+  tag: {
+    type: String,
+    default: "",
+  },
+  value: [String, Number, null, undefined, Array],
+  options: {
+    type: Array<String>,
+    default: [],
+  },
 });
 
 const emit = defineEmits(["update:model-value"]);

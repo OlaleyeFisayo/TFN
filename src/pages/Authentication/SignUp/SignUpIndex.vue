@@ -33,17 +33,25 @@
               </template>
             </AppInput>
           </template>
+          <AppInput
+            type="checkbox"
+            :options="[
+              'By registering you accept our Terms of Use and Privacy and agree that we and our selected partners may contact you with relevant offers and services',
+            ]"
+            v-model="tAndC"
+          />
           <AppButton
             label="Sign Up"
             theme="primary"
             @click="signUp"
-            :disabled="isSignUpFormComplete"
+            :disabled="isSignUpFormComplete || tAndC === false"
           >
             <template #right-icon>
               <NavigateNext :width="34" :height="36" />
             </template>
           </AppButton>
         </div>
+        <div class="signup-details-footer"></div>
       </div>
     </main>
   </section>
@@ -119,16 +127,9 @@ const formValue = ref([
     ],
     value: null,
   },
-  {
-    type: "checkbox",
-    tag: "tAndC",
-    options: [
-      "By registering you accept our Terms of Use and Privacy and agree that we and our selected partners may contact you with relevant offers and services.",
-    ],
-    value: null,
-  },
 ]);
 
+const tAndC = ref(false);
 const isSignUpFormComplete = computed(() =>
   isFormComplete(convertToObject(formValue.value)),
 );
