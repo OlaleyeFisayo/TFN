@@ -52,7 +52,10 @@
           </AppButton>
         </div>
         <div class="signup-details-footer">
-            <p>Do you already have an account? <RouterLink to="/login">Login</RouterLink></p>
+          <p>
+            Do you already have an account?
+            <RouterLink to="/login" class="login-link">Login</RouterLink>
+          </p>
         </div>
       </div>
     </main>

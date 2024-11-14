@@ -49,7 +49,18 @@
       }
       .signup-details-footer {
         background: var(--grey2);
-        padding: 0.75rem 1.5rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+
+        .login-link {
+          color: var(--wine2);
+          text-decoration: none;
+        }
+
+        .login-link:active {
+          color: var(--wine2);
+        }
       }
     }
   }

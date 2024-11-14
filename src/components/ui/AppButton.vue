@@ -1,6 +1,9 @@
 <template>
   <button class="app-button" :style="styleSheet[theme]" :disabled="disabled">
-    <div class="app-button-label">{{ label }}</div>
+    <div class="app-button-label" v-if="label">{{ label }}</div>
+    <div class="app-button-label" v-else>
+      <slot></slot>
+    </div>
     <div class="app-button-right-icon">
       <slot name="right-icon"></slot>
     </div>
@@ -27,6 +30,11 @@ const styleSheet = {
     background: "var(--grey2)",
     color: "var(--black)",
     border: "1px solid var(--grey2)",
+  },
+  serviceAuth: {
+    background: "var(--white)",
+    color: "var(--black)",
+    border: "2px solid var(--grey)",
   },
 };
 </script>

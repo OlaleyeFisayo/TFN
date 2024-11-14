@@ -119,6 +119,11 @@ p {
       outline: none;
       display: block;
       width: 100%;
+
+      &::placeholder {
+        font-style: italic;
+        color: #999;
+      }
     }
   }
 }
