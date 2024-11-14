@@ -136,8 +136,10 @@ p {
       height: 1em;
       border: 0.15em solid var(--black);
       cursor: pointer;
-      display: grid !important;
-      place-content: center !important;
+      display: flex;
+      padding: 0.02rem;
+      justify-content: center;
+      align-items: center;
       border-radius: 50%;
     }
 
@@ -164,7 +166,7 @@ p {
 
   & > label {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.7rem;
     cursor: pointer;
 
@@ -182,14 +184,16 @@ p {
       height: 1em;
       border: 0.15em solid var(--black);
       cursor: pointer;
-      display: grid !important;
-      place-content: center !important;
+      display: flex;
+      padding: 0.05rem;
+      justify-content: center;
+      align-items: center;
     }
 
     input[type="checkbox"]::before {
       content: "";
-      width: 0.67em;
-      height: 0.67em;
+      width: 0.65em;
+      height: 0.65em;
       transform: scale(0);
       transition: 100ms transform ease-in-out;
       box-shadow: inset 1em 1em var(--black);
