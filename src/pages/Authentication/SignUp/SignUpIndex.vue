@@ -51,7 +51,9 @@
             </template>
           </AppButton>
         </div>
-        <div class="signup-details-footer"></div>
+        <div class="signup-details-footer">
+            <p>Do you already have an account? <RouterLink to="/login">Login</RouterLink></p>
+        </div>
       </div>
     </main>
   </section>
@@ -69,6 +71,7 @@ import { convertToObject } from "src/helpers";
 import AppButton from "components/ui/AppButton.vue";
 import NavigateNext from "components/svg/navigate-next.vue";
 import { isFormComplete } from "src/helpers";
+import { RouterLink } from "vue-router";
 
 const formValue = ref([
   {

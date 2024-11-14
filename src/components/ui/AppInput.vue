@@ -144,12 +144,11 @@ p {
       margin: 0;
       font: inherit;
       color: inherit;
-      width: 1em;
-      height: 1em;
+      width: 1.15em;
+      height: 1.15em;
       border: 0.15em solid var(--black);
       cursor: pointer;
       display: flex;
-      padding: 0.02rem;
       justify-content: center;
       align-items: center;
       border-radius: 50%;
@@ -157,7 +156,7 @@ p {
 
     input[type="radio"]::before {
       content: "";
-      width: 0.67em;
+      width: 0.66em;
       height: 0.65em;
       transform: scale(0);
       transition: 100ms transform ease-in-out;
@@ -194,7 +193,7 @@ p {
       color: inherit;
       width: 1em;
       height: 1em;
-      border: 0.15em solid var(--black);
+      border: 0.15em solid var(--wine2);
       cursor: pointer;
       display: flex;
       padding: 0.05rem;
@@ -208,7 +207,7 @@ p {
       height: 0.65em;
       transform: scale(0);
       transition: 100ms transform ease-in-out;
-      box-shadow: inset 1em 1em var(--black);
+      box-shadow: inset 1em 1em var(--wine2);
     }
 
     input[type="checkbox"]:checked::before {
