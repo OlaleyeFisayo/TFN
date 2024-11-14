@@ -9,7 +9,7 @@
         :for="option"
       >
         <input
-          type="radio"
+          :type="type"
           :name="tag"
           :id="option"
           :value="option"
@@ -22,13 +22,13 @@
   <template v-else-if="type === 'checkbox'">
     <div class="checkbox-container">
       <label
-        class="radio"
-        v-for="(option, index) in options"
-        :key="index"
+        class="checkbox"
+        v-for="option in options"
+        :key="option"
         :for="option"
       >
         <input
-          type="checkbox"
+          :type="type"
           :name="option"
           :id="option"
           :value="option"

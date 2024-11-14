@@ -33,12 +33,7 @@
               </template>
             </AppInput>
           </template>
-          <div class="terms-condition">
-            <AppInput
-              type="checkbox"
-              :options="['Accept our terms and condition']"
-            />
-          </div>
+          <button @click="signUp">Submit</button>
         </div>
       </div>
     </main>
@@ -53,6 +48,7 @@ import Contact from "components/svg/contact.vue";
 import EmailRounded from "components/svg/email-rounded.vue";
 import RoundPhone from "components/svg/round-phone.vue";
 import LockFill from "components/svg/lock-fill.vue";
+import { convertToObject } from "src/helpers";
 
 const formValue = ref([
   {
@@ -111,7 +107,18 @@ const formValue = ref([
     ],
     value: null,
   },
+  {
+    type: "checkbox",
+    tag: "tAndC",
+    options: ["Accept our terms and conditions"],
+    value: null,
+  },
 ]);
+
+function signUp() {
+  const payload = convertToObject(formValue.value);
+  console.log(payload);
+}
 </script>
 
 <style scoped lang="scss">
