@@ -8,7 +8,32 @@
         :key="index"
         :for="option"
       >
-        <input type="radio" :name="tag" :id="option" :value="option" />
+        <input
+          type="radio"
+          :name="tag"
+          :id="option"
+          :value="option"
+          v-model="modelValue"
+        />
+        <span> {{ option }}</span>
+      </label>
+    </div>
+  </template>
+  <template v-else-if="type === 'checkbox'">
+    <div class="checkbox-container">
+      <label
+        class="radio"
+        v-for="(option, index) in options"
+        :key="index"
+        :for="option"
+      >
+        <input
+          type="checkbox"
+          :name="option"
+          :id="option"
+          :value="option"
+          v-model="modelValue"
+        />
         <span> {{ option }}</span>
       </label>
     </div>
@@ -22,8 +47,7 @@
           :name="tag"
           :id="tag"
           :placeholder="placeholder"
-          :value="value"
-          :v-model="value"
+          v-model="modelValue"
         />
         <slot name="right-icon"></slot>
       </div>
@@ -32,7 +56,9 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
+import { ref, watch } from "vue";
+
+const props = defineProps({
   type: {
     type: String,
     default: "text",
@@ -40,9 +66,19 @@ defineProps({
   label: String,
   placeholder: String,
   tag: String,
-  value: String || Number || null,
+  value: [String, Number, null, undefined],
   options: Array<String>,
 });
+
+const emit = defineEmits(["update:model-value"]);
+const modelValue = ref(props.value);
+
+watch(
+  () => modelValue.value,
+  (n) => {
+    emit("update:model-value", n);
+  },
+);
 </script>
 
 <style scoped lang="scss">
@@ -62,6 +98,7 @@ p {
     display: flex;
     border: 1px solid var(--grey);
     align-items: center;
+    padding-right: 0.3rem;
 
     input {
       background: inherit;
@@ -101,18 +138,64 @@ p {
       cursor: pointer;
       display: grid !important;
       place-content: center !important;
+      border-radius: 50%;
     }
 
     input[type="radio"]::before {
       content: "";
-      width: 0.65em;
+      width: 0.67em;
       height: 0.65em;
+      transform: scale(0);
+      transition: 100ms transform ease-in-out;
+      box-shadow: inset 1em 1em var(--black);
+      border-radius: 50%;
+    }
+
+    input[type="radio"]:checked::before {
+      transform: scale(1);
+    }
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  & > label {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    cursor: pointer;
+
+    span {
+      text-transform: capitalize;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      background-color: inherit;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      width: 1em;
+      height: 1em;
+      border: 0.15em solid var(--black);
+      cursor: pointer;
+      display: grid !important;
+      place-content: center !important;
+    }
+
+    input[type="checkbox"]::before {
+      content: "";
+      width: 0.67em;
+      height: 0.67em;
       transform: scale(0);
       transition: 100ms transform ease-in-out;
       box-shadow: inset 1em 1em var(--black);
     }
 
-    input[type="radio"]:checked::before {
+    input[type="checkbox"]:checked::before {
       transform: scale(1);
     }
   }

@@ -20,6 +20,7 @@
               :placeholder="form.placeholder"
               :tag="form.tag"
               :value="form.value"
+              v-model="form.value"
               :options="form.options"
             >
               <template #right-icon>
@@ -32,7 +33,12 @@
               </template>
             </AppInput>
           </template>
-          <AppRadio />
+          <div class="terms-condition">
+            <AppInput
+              type="checkbox"
+              :options="['Accept our terms and condition']"
+            />
+          </div>
         </div>
       </div>
     </main>
