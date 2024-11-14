@@ -18,3 +18,6 @@ export function checkValues(arr?: []) {
     return false;
   }
 }
+
+export const isFormComplete = (formObject: any) =>
+  Object.values(formObject).some((v) => !v);

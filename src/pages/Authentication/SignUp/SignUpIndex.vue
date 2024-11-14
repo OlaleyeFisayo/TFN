@@ -33,7 +33,16 @@
               </template>
             </AppInput>
           </template>
-          <button @click="signUp">Submit</button>
+          <AppButton
+            label="Sign Up"
+            theme="primary"
+            @click="signUp"
+            :disabled="isSignUpFormComplete"
+          >
+            <template #right-icon>
+              <NavigateNext :width="34" :height="36" />
+            </template>
+          </AppButton>
         </div>
       </div>
     </main>
@@ -43,12 +52,15 @@
 <script setup lang="ts">
 import arrowBack from "components/svg/arrow-back.vue";
 import AppInput from "components/ui/AppInput.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import Contact from "components/svg/contact.vue";
 import EmailRounded from "components/svg/email-rounded.vue";
 import RoundPhone from "components/svg/round-phone.vue";
 import LockFill from "components/svg/lock-fill.vue";
 import { convertToObject } from "src/helpers";
+import AppButton from "components/ui/AppButton.vue";
+import NavigateNext from "components/svg/navigate-next.vue";
+import { isFormComplete } from "src/helpers";
 
 const formValue = ref([
   {
@@ -116,6 +128,10 @@ const formValue = ref([
     value: null,
   },
 ]);
+
+const isSignUpFormComplete = computed(() =>
+  isFormComplete(convertToObject(formValue.value)),
+);
 
 function signUp() {
   const payload = convertToObject(formValue.value);
