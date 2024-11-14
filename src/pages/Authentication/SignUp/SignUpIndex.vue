@@ -33,9 +33,9 @@
               </template>
             </AppInput>
           </template>
-          <AppButton label="Sign Up"/>
+          <button @click="signUp">Submit</button>
         </div>
-    </div>
+      </div>
     </main>
   </section>
 </template>
@@ -49,7 +49,6 @@ import EmailRounded from "components/svg/email-rounded.vue";
 import RoundPhone from "components/svg/round-phone.vue";
 import LockFill from "components/svg/lock-fill.vue";
 import { convertToObject } from "src/helpers";
-import AppButton from "components/ui/AppButton.vue";
 
 const formValue = ref([
   {
