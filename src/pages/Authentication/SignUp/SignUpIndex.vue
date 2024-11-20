@@ -63,16 +63,16 @@
 </template>
 
 <script setup lang="ts">
-import arrowBack from "components/svg/arrow-back.vue";
-import AppInput from "components/ui/AppInput.vue";
+import arrowBack from "src/components/svg/arrow-back.vue";
+import AppInput from "src/components/ui/AppInput.vue";
 import { computed, ref } from "vue";
-import Contact from "components/svg/contact.vue";
-import EmailRounded from "components/svg/email-rounded.vue";
-import RoundPhone from "components/svg/round-phone.vue";
-import LockFill from "components/svg/lock-fill.vue";
+import Contact from "src/components/svg/contact.vue";
+import EmailRounded from "src/components/svg/email-rounded.vue";
+import RoundPhone from "src/components/svg/round-phone.vue";
+import LockFill from "src/components/svg/lock-fill.vue";
 import { convertToObject } from "src/helpers";
-import AppButton from "components/ui/AppButton.vue";
-import NavigateNext from "components/svg/navigate-next.vue";
+import AppButton from "src/components/ui/AppButton.vue";
+import NavigateNext from "src/components/svg/navigate-next.vue";
 import { isFormComplete } from "src/helpers";
 import { RouterLink } from "vue-router";
 

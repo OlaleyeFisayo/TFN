@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import Loader from "../Loader.vue";
+import Loader from "src/components/Loader.vue";
 
 defineProps({
   label: String,

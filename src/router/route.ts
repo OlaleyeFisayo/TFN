@@ -4,18 +4,18 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/",
     name: "signUp",
-    component: () => import("pages/Authentication/SignUp/SignUpIndex.vue"),
+    component: () => import("src/pages/Authentication/SignUp/SignUpIndex.vue"),
   },
   {
     path: "/login",
     name: "login",
-    component: () => import("pages/Authentication/SignIn/SignInIndex.vue"),
+    component: () => import("src/pages/Authentication/SignIn/SignInIndex.vue"),
   },
   {
     path: "/forgotpassword",
     name: "forgotPassword",
     component: () =>
-      import("pages/Authentication/ForgotPassword/ForgotPasswordIndex.vue"),
+      import("src/pages/Authentication/ForgotPassword/ForgotPasswordIndex.vue"),
   },
 ];
 
