@@ -11,6 +11,12 @@ const routes: RouteRecordRaw[] = [
     name: "login",
     component: () => import("pages/Authentication/SignIn/SignInIndex.vue"),
   },
+  {
+    path: "/forgotpassword",
+    name: "forgotPassword",
+    component: () =>
+      import("pages/Authentication/ForgotPassword/ForgotPasswordIndex.vue"),
+  },
 ];
 
 export const router = createRouter({

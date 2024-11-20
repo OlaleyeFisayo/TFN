@@ -1,20 +1,33 @@
 <template>
-  <button class="app-button" :style="styleSheet[theme]" :disabled="disabled">
-    <div class="app-button-label" v-if="label">{{ label }}</div>
+  <button
+    :class="`app-button ${disabled && !loading && 'disabled'}`"
+    :style="styleSheet[theme]"
+    :disabled="disabled || loading"
+  >
+    <div class="app-button-loading" v-if="loading">
+      <Loader :width="34" :height="34" />
+    </div>
+    <div class="app-button-label" v-else-if="label">{{ label }}</div>
     <div class="app-button-label" v-else>
       <slot></slot>
     </div>
-    <div class="app-button-right-icon">
+    <div class="app-button-right-icon" v-if="!loading">
       <slot name="right-icon"></slot>
     </div>
   </button>
 </template>
 
 <script setup lang="ts">
+import Loader from "../Loader.vue";
+
 defineProps({
   label: String,
   theme: String,
   disabled: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
     type: Boolean,
     default: false,
   },
@@ -34,7 +47,7 @@ const styleSheet = {
   serviceAuth: {
     background: "var(--white)",
     color: "var(--black)",
-    border: "2px solid var(--grey)",
+    border: "2.5px solid var(--grey)",
   },
 };
 </script>
@@ -51,6 +64,17 @@ const styleSheet = {
     background-color: #ccc;
     color: #999;
     border: 1px solid #aaa;
+  }
+
+  .app-button-loading {
+    padding: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: not-allowed;
   }
 
   .app-button-label {

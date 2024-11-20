@@ -53,7 +53,7 @@
         <div class="signin-details-footer">
           <p>
             Lost your password?
-            <RouterLink to="/login" class="login-link"
+            <RouterLink to="/forgotpassword" class="login-link"
               >Click here to Recover</RouterLink
             >
           </p>
