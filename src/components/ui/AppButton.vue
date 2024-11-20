@@ -84,11 +84,11 @@ const styleSheet = {
     outline: none;
   }
 
-  .app-button-right-icon {
-    background: var(--wine2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  // .app-button-right-icon {
+  //     background: var(--wine2);
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  // }
 }
 </style>
