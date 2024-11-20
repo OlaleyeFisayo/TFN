@@ -161,8 +161,10 @@ p {
 
     input[type="radio"]::before {
       content: "";
-      width: 0.66em;
-      height: 0.65em;
+      //   width: 0.66em;
+      //   height: 0.66em;
+      width: 85%;
+      height: 85%;
       transform: scale(0);
       transition: 100ms transform ease-in-out;
       box-shadow: inset 1em 1em var(--black);
@@ -209,7 +211,7 @@ p {
     input[type="checkbox"]::before {
       content: "";
       width: 0.65em;
-      height: 0.65em;
+      height: 90%;
       transform: scale(0);
       transition: 100ms transform ease-in-out;
       box-shadow: inset 1em 1em var(--wine2);
