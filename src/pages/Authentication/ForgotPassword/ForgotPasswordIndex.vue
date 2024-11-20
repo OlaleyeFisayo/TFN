@@ -1,9 +1,9 @@
 <template>
   <section class="forgotpassword-section">
     <nav class="forgotpassword-topbar">
-      <button class="backarrow-button">
+      <RouterLink to="/login" class="backarrow-button">
         <ArrowBack />
-      </button>
+      </RouterLink>
       <h1>Reset Password</h1>
       <div></div>
     </nav>

@@ -1,9 +1,10 @@
 <template>
   <section class="signup-section">
     <nav class="signup-topbar">
-      <button class="backarrow-button">
+      <!-- <button class="backarrow-button">
         <arrowBack />
-      </button>
+      </button> -->
+      <div></div>
       <h1>Sign Up</h1>
       <div></div>
     </nav>

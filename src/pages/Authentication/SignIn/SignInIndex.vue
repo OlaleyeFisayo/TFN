@@ -1,9 +1,9 @@
 <template>
   <section class="signin-section">
     <nav class="signin-topbar">
-      <button class="backarrow-button">
+      <RouterLink to="/" class="backarrow-button">
         <arrowBack />
-      </button>
+      </RouterLink>
       <h1>Sign In</h1>
       <div></div>
     </nav>
