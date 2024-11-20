@@ -36,7 +36,7 @@
           <AppInput
             type="checkbox"
             :options="[
-              'By registering you accept our Terms of Use and Privacy and agree that we and our selected partners may contact you with relevant offers and services',
+              'By registering you accept our Terms of Use and Privacy and agree that we and our selected partners may contact you with relevant offers and services',
             ]"
             v-model="tAndC"
           />
