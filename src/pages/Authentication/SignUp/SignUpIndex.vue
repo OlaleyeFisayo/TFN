@@ -29,28 +29,30 @@
               </template>
             </AppInput>
           </template>
-          <AppInput
-            type="checkbox"
-            :options="[
-              'By registering you accept our Terms of Use and Privacy and agree that we and our selected partners may contact you with relevant offers and services',
-            ]"
-            v-model="tAndC"
-          />
           <AppButton
             label="Sign Up"
             theme="primary"
             @click="signUp"
-            :disabled="isSignUpFormComplete || tAndC === false"
+            :disabled="isSignUpFormComplete"
           >
             <template #right-icon>
               <NavigateNext :width="34" :height="36" />
             </template>
           </AppButton>
+          <p>
+            By registering you accept our
+            <RouterLink to="/termsofuse">Terms of Use</RouterLink> and
+            <RouterLink to="/policy">Privacy</RouterLink> and agree that we and
+            our selected partners may contact you with relevant offers and
+            services
+          </p>
         </div>
         <div class="signup-details-footer">
           <p>
-            Do you already have an account?
-            <RouterLink to="/login" class="login-link">Login</RouterLink>
+            Already have an account
+            <RouterLink to="/login" class="login-link"
+              >Click here to sign in</RouterLink
+            >
           </p>
         </div>
       </div>

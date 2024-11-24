@@ -40,3 +40,12 @@ html {
     background: var(--wine2);
   }
 }
+
+a {
+  color: var(--wine2);
+  text-decoration: none;
+
+  &:active {
+    color: var(--wine2);
+  }
+}
