@@ -27,6 +27,10 @@ const routes: RouteRecordRaw[] = [
     name: "policy",
     component: () => import("src/pages/Privacy/PrivacyIndex.vue"),
   },
+  {
+    path: "/testing",
+    component: () => import("src/layouts/MainLayout.vue"),
+  },
 ];
 
 export const router = createRouter({
