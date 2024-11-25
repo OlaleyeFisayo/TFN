@@ -90,13 +90,16 @@
       </div>
       <div class="darkside" @click="toggleMobileNavBar"></div>
     </div>
+    <main class="page-container">
+      <RouterView />
+    </main>
   </section>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import TfnWhiteLogo from "src/components/svg/tfn-white-logo.vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, RouterView } from "vue-router";
 import DownCaret from "src/components/svg/down-caret.vue";
 import Menu from "src/components/svg/menu.vue";
 import RealEstateAgent from "src/components/svg/real-estate-agent.vue";

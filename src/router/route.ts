@@ -28,8 +28,16 @@ const routes: RouteRecordRaw[] = [
     component: () => import("src/pages/Privacy/PrivacyIndex.vue"),
   },
   {
-    path: "/testing",
+    path: "/",
     component: () => import("src/layouts/MainLayout.vue"),
+    redirect: { name: "home" },
+    children: [
+      {
+        name: "home",
+        path: "/home",
+        component: () => import("src/pages/Home/HomeIndex.vue"),
+      },
+    ],
   },
 ];
 
