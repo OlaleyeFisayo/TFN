@@ -40,8 +40,9 @@
   </template>
   <template v-else>
     <label class="input" :for="tag">
-      <p>{{ label }}</p>
+      <p v-if="label">{{ label }}</p>
       <div class="input-container">
+        <slot name="left-icon"></slot>
         <input
           :type="type"
           :name="tag"
@@ -110,7 +111,9 @@ p {
     display: flex;
     border: 1px solid var(--grey);
     align-items: center;
+    padding-left: 0.3rem;
     padding-right: 0.3rem;
+    border-radius: 0.5rem;
 
     input {
       background: inherit;

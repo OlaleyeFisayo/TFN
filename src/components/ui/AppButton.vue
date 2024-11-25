@@ -44,6 +44,15 @@ const styleSheet = {
     color: "var(--black)",
     border: "1px solid var(--grey2)",
   },
+  whiteWithRed: {
+    background: "var(--white)",
+    color: "var(--wine)",
+    border: "1px solid var(--grey2)",
+    borderRadius: "0.5rem",
+    display: "inline",
+    width: "fit-content",
+    fontWeight: "700",
+  },
   serviceAuth: {
     background: "var(--white)",
     color: "var(--black)",

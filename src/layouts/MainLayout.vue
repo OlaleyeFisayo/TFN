@@ -108,7 +108,7 @@ import PropertyTag from "src/components/svg/property-tag.vue";
 import SignInSolid from "src/components/svg/sign-in-solid.vue";
 import LoginBold from "src/components/svg/login-bold.vue";
 import QuestionFilled from "src/components/svg/question-filled.vue";
-import UpCaret from "../components/svg/up-caret.vue";
+import UpCaret from "src/components/svg/up-caret.vue";
 
 const navList = ref([
   {
