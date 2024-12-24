@@ -93,6 +93,45 @@
     <main class="page-container">
       <RouterView />
     </main>
+    <footer class="top-footer">
+      <div class="footer-content">
+        <div class="logo">
+          <TfnWhiteLogo :width="30" :height="30" />
+          <h1>
+            TFN <br />
+            Properties
+          </h1>
+        </div>
+        <ul class="footer-link">
+          <h2>Useful Links:</h2>
+          <li>About Us</li>
+          <li>Contact Us</li>
+          <li><RouterLink to="/policy">Privacy Policy</RouterLink></li>
+          <li><RouterLink to="/termsofuse">Terms of Use</RouterLink></li>
+          <li>FAQs</li>
+        </ul>
+        <div class="socials"></div>
+      </div>
+    </footer>
+    <footer class="bottom-footer">
+      <div class="footer-content">
+        <h1>Popular Property</h1>
+        <ul>
+          <li>Flats for rent in Abuja</li>
+          <li>Houses for rent in Abuja</li>
+          <li>Houses for sale in Abuja</li>
+          <li>Land for sale in Abuja</li>
+          <li>Mini Flats for rent in Abuja</li>
+          <li>Self contain for rent in Abuja</li>
+          <li>Flats for rent in Lagos</li>
+          <li>Houses for rent in Lagos</li>
+          <li>Houses for sale in Lagos</li>
+          <li>Land for sale in Lagos</li>
+          <li>Mini Flats for rent in Lagos</li>
+          <li>Self contain for rent in Lagos</li>
+        </ul>
+      </div>
+    </footer>
   </section>
 </template>
 
