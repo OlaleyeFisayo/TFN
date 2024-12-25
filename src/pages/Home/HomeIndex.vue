@@ -84,13 +84,13 @@
       <h1 class="header">Our Partners</h1>
       <div class="content">
         <div class="img-container">
-          <img src="src/assets/image/partners-3.png" alt="partners-3" />
+          <img src="assets/image/partners-3.png" alt="partners-3" />
         </div>
         <div class="img-container">
-          <img src="src/assets/image/partners-1.png" alt="partners-3" />
+          <img src="assets/image/partners-1.png" alt="partners-3" />
         </div>
         <div class="img-container">
-          <img src="src/assets/image/partners-2.png" alt="partners-3" />
+          <img src="assets/image/partners-2.png" alt="partners-3" />
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@ const searchInput = ref('')
 const imgSliderContent = ref([
   {
     id: 0,
-    img: 'src/assets/image/slider-1.jpg',
+    img: 'assets/image/slider-1.jpg',
     title: 'Simplify, Optimize, Succeed:',
     subtitle: 'Your Property Management Solution',
     isActive: true,
@@ -119,21 +119,21 @@ const imgSliderContent = ref([
   },
   {
     id: 1,
-    img: 'src/assets/image/slider-2.jpg',
+    img: 'assets/image/slider-2.jpg',
     subtitle: 'Your Gateway to Seamless Property Management',
     isActive: false,
     toggleFromRight: false,
   },
   {
     id: 2,
-    img: 'src/assets/image/slider-3.jpg',
+    img: 'assets/image/slider-3.jpg',
     subtitle: 'Effortless Property Management, Elevated.',
     isActive: false,
     toggleFromRight: false,
   },
   {
     id: 3,
-    img: 'src/assets/image/slider-4.jpg',
+    img: 'assets/image/slider-4.jpg',
     subtitle: 'Your Partner in Property Success.',
     isActive: false,
     toggleFromRight: false,
@@ -164,25 +164,25 @@ setInterval(() => {
 
 const nearbyPlaces = ref([
   {
-    img: 'src/assets/image/nearbyPlaces1.jpg',
+    img: 'assets/image/nearbyPlaces1.jpg',
     name: 'Chimney Villa',
     rooms: '3 Bedrooms, 1 Parlour',
     price: '800,000',
   },
   {
-    img: 'src/assets/image/nearbyPlaces2.jpg',
+    img: 'assets/image/nearbyPlaces2.jpg',
     name: 'Coast Villa',
     rooms: '2 Bedrooms, 2 Parlour',
     price: '500,000',
   },
   {
-    img: 'src/assets/image/nearbyPlaces3.jpg',
+    img: 'assets/image/nearbyPlaces3.jpg',
     name: 'Mayson house',
     rooms: '3 Bedrooms, 2 Parlour',
     price: '900,000',
   },
   {
-    img: 'src/assets/image/nearbyPlaces4.jpg',
+    img: 'assets/image/nearbyPlaces4.jpg',
     name: 'Chimney Villa',
     rooms: '3 Bedrooms, 1 Parlour',
     price: '400,000',

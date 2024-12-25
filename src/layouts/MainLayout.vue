@@ -25,7 +25,7 @@
         </div>
         <div class="logo-and-name">
           <div class="logo-container">
-            <img src="src/assets/image/69bc49ac256503346b5e0f315585faa7.png" alt="TFN logo" />
+            <img src="assets/image/69bc49ac256503346b5e0f315585faa7.png" alt="TFN logo" />
           </div>
           <h5>
             TFN <br />
