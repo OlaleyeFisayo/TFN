@@ -9,7 +9,7 @@
   </svg>
 </template>
 
-<script setup lang="ts">
+<script setup>
 defineProps({
   width: {
     type: Number,

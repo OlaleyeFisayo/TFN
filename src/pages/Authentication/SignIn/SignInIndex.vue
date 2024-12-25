@@ -45,7 +45,7 @@
             </div>
           </div>
           <q-checkbox label="Keep me Signed In" v-model="keepMeSignedIn" :color="colours.wine" />
-          <q-btn label="Sign In" class="app-button primary mt-2">
+          <q-btn label="Sign In" class="app-button primary mt-2" :disable="isSignFormCompleted">
             <div class="right-icon">
               <navigateNext :width="34" :height="36" />
             </div>
@@ -58,7 +58,7 @@
           </span>
           <span>
             Don't have an account?
-            <RouterLink to="/" class="login-link">Sign Up now!</RouterLink>
+            <RouterLink to="/signup" class="login-link">Sign Up now!</RouterLink>
           </span>
         </div>
       </div>
@@ -83,19 +83,21 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import contactIcon from 'src/components/svg/contact-icon.vue'
 import lockFill from 'src/components/svg/lock-fill.vue'
 import navigateNext from 'src/components/svg/navigate-next.vue'
 import appleIcon from 'src/components/svg/apple-icon.vue'
 import googleIcon from 'src/components/svg/google-icon.vue'
+import arrowBack from 'src/components/svg/arrow-back.vue'
 import { colours } from 'src/helpers/stylesheet'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { convertToObject, isFormComplete } from 'src/helpers'
 
 const formValue = ref([
   {
     label: 'Email or Username',
-    placeholder: 'email or username',
+    placeholder: 'Email or Username',
     tag: 'email',
     value: null,
     img: contactIcon,
@@ -112,6 +114,7 @@ const formValue = ref([
 ])
 
 const keepMeSignedIn = ref(false)
+const isSignFormCompleted = computed(() => isFormComplete(convertToObject(formValue.value)))
 </script>
 
 <style scoped lang="scss">

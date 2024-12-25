@@ -1,6 +1,7 @@
 .termsofuse-section {
   width: 100%;
   min-height: 100dvh;
+
   .termsofuse-topbar {
     background: var(--wine);
     color: var(--white);
@@ -8,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     .backarrow-button {
       background: inherit;
       border: none;
@@ -17,10 +19,12 @@
       justify-content: center;
       align-items: center;
     }
+
     h1 {
       font-size: 1rem;
     }
   }
+
   .termsofuse-main {
     padding: 0.75rem;
     width: 100%;
@@ -34,14 +38,17 @@
       width: 100%;
       height: auto;
       border: 1px solid var(--grey);
+
       .termsofuse-details-header {
         background: var(--grey2);
         padding: 0.75rem 1.5rem;
+
         h1 {
           font-size: 1rem;
           font-weight: 500;
         }
       }
+
       .termsofuse-details-body {
         width: 100%;
         padding: 1rem 1.5rem 2.8125rem;

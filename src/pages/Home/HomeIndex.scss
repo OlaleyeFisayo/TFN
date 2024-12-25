@@ -1,7 +1,5 @@
 .home-section {
-  .search-section {
-    margin-bottom: 1rem;
-  }
+  padding: 0.8rem 1.5rem;
 
   .img-slider {
     position: relative;
@@ -13,6 +11,7 @@
     justify-content: center;
     align-items: center;
     height: 300px;
+
     @media (max-width: 620px) {
       height: 370px;
     }
@@ -43,6 +42,7 @@
         font-size: 1.5rem;
       }
     }
+
     .subtitle {
       color: var(--white);
       text-align: center;
@@ -55,10 +55,12 @@
         font-size: 1.3rem;
       }
     }
+
     button {
       padding: 0 1.5rem;
       margin: 2rem auto 0;
     }
+
     .slider-toggler {
       width: 100%;
       height: auto;
@@ -95,6 +97,7 @@
         }
       }
     }
+
     .black-background {
       position: absolute;
       top: 0;
@@ -108,19 +111,40 @@
 
   .nearby-places {
     margin-top: 1.5rem;
+
     h1 {
       font-size: 1.7rem;
       margin-bottom: 1.5rem;
+    }
+
+    .places {
+      display: flex;
+      flex-wrap: nowrap;
+
+      overflow-x: auto;
+
+      white-space: nowrap;
+      gap: 16px;
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box !important;
+      scroll-behavior: smooth;
+
+      div {
+        display: inline-block;
+      }
     }
   }
 
   .about-us {
     margin-top: 1.5rem;
+
     .header {
       font-size: 1.7rem;
       text-align: center;
       margin-bottom: 1.5rem;
     }
+
     .content {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -133,6 +157,7 @@
         flex-direction: column;
         align-items: none;
       }
+
       .left-side {
         text-align: center;
         display: flex;
@@ -145,6 +170,7 @@
           margin: 0 auto;
         }
       }
+
       .right-side {
         display: flex;
         flex-direction: column;
@@ -158,6 +184,11 @@
           border-radius: 0.5rem;
           margin: 0 auto;
           text-align: center;
+
+          .stat {
+            font-size: 2rem;
+            font-weight: 800;
+          }
         }
 
         .info-box-wrap {
@@ -167,21 +198,25 @@
       }
     }
   }
+
   .partners {
     margin-top: 2rem;
+
     .header {
       font-size: 1.7rem;
       text-align: center;
       margin-bottom: 1.5rem;
     }
+
     .content {
       display: flex;
       gap: 4em;
       justify-content: center;
 
       .img-container {
-        width: 100px;
+        width: 150px;
         height: 100px;
+
         img {
           width: 100%;
           height: 100%;
@@ -195,6 +230,7 @@
   0% {
     transform: translateX(-155%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -204,15 +240,17 @@
   0% {
     transform: translateX(155%);
   }
+
   100% {
     transform: translateX(0);
   }
 }
 
-@keyframes ultimateSwapRight {
+@keyframes ulti\teSwapRight {
   0% {
     transform: translateX(-476%);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -222,6 +260,7 @@
   0% {
     transform: translateX(476%);
   }
+
   100% {
     transform: translateX(0);
   }

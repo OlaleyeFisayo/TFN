@@ -1,15 +1,27 @@
 const routes = [
   {
     path: '/',
-    redirect: { name: 'signup' },
+    redirect: { name: 'home' },
     children: [
       {
-        name: 'signup',
         path: '',
+        component: () => import('layouts/MainLayout.vue'),
+        redirect: { name: 'home' },
+        children: [
+          {
+            name: 'home',
+            path: 'home',
+            component: () => import('pages/Home/HomeIndex.vue'),
+          },
+        ],
+      },
+      {
+        name: 'signup',
+        path: 'signup',
         component: () => import('pages/Authentication/SignUp/SignUpIndex.vue'),
       },
       {
-        name: 'signin',
+        name: 'login',
         path: 'login',
         component: () => import('pages/Authentication/SignIn/SignInIndex.vue'),
       },
@@ -22,6 +34,21 @@ const routes = [
         path: '/policy',
         name: 'policy',
         component: () => import('pages/Privacy/PrivacyIndex.vue'),
+      },
+      {
+        path: 'forgotpassword',
+        name: 'forgotpassword',
+        component: () => import('pages/Authentication/ForgetPassword/ForgetPasswordIndex.vue'),
+      },
+      {
+        path: 'faqs',
+        name: 'faqs',
+        component: () => import('pages/FAQs/FAQsIndex.vue'),
+      },
+      {
+        path: 'calender',
+        name: 'calender',
+        component: () => import('pages/Calender/CalenderIndex.vue'),
       },
     ],
   },

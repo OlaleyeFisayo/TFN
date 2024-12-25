@@ -1,7 +1,11 @@
 <template>
   <section class="signup-section">
     <nav class="signup-topbar">
+      <RouterLink to="/" class="backarrow-button">
+        <arrowBack />
+      </RouterLink>
       <h3>Sign Up</h3>
+      <div></div>
     </nav>
     <main class="signup-main">
       <div class="signup-details">
@@ -22,11 +26,6 @@
                     :color="colours.wine"
                   />
                 </div>
-                <q-btn label="Sign up" class="app-button primary mt-2">
-                  <div class="right-icon">
-                    <navigateNext :width="34" :height="36" />
-                  </div>
-                </q-btn>
               </template>
               <template v-else>
                 <q-input
@@ -55,9 +54,23 @@
                     <component :is="form.img" :width="37" :height="24" color="black" />
                   </template>
                 </q-input>
+                <template v-if="form.tag === 'confirmPassword'">
+                  <span class="error-message" v-if="form.value && !confirmPassword"
+                    >Password doesn't match</span
+                  >
+                </template>
               </template>
             </div>
           </div>
+          <q-btn
+            label="Sign up"
+            class="app-button primary mt-2"
+            :disable="isSignUpFormCompleted || !confirmPassword"
+          >
+            <div class="right-icon">
+              <navigateNext :width="34" :height="36" />
+            </div>
+          </q-btn>
           <p>
             By registering you accept our
             <RouterLink to="/termsofuse">Terms of Use</RouterLink> and
@@ -76,14 +89,18 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import contactIcon from 'src/components/svg/contact-icon.vue'
 import emailRounded from 'src/components/svg/email-rounded.vue'
 import lockFill from 'src/components/svg/lock-fill.vue'
 import roundPhone from 'src/components/svg/round-phone.vue'
-import { ref } from 'vue'
+import arrowBack from 'src/components/svg/arrow-back.vue'
+import { computed, ref } from 'vue'
 import { colours } from 'src/helpers/stylesheet'
 import navigateNext from 'src/components/svg/navigate-next.vue'
+import { isFormComplete } from 'src/helpers'
+import { convertToObject } from 'src/helpers'
+import { isPasswordSame } from 'src/helpers'
 
 const formValue = ref([
   {
@@ -140,6 +157,9 @@ const formValue = ref([
     value: null,
   },
 ])
+
+const isSignUpFormCompleted = computed(() => isFormComplete(convertToObject(formValue.value)))
+const confirmPassword = computed(() => isPasswordSame(formValue.value))
 </script>
 
 <style scoped lang="scss">

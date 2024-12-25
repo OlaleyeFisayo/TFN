@@ -1,0 +1,32 @@
+.calender-section {
+  width: 100%;
+  min-height: 100dvh;
+
+  .calender-topbar {
+    background: var(--wine);
+    color: var(--white);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .backarrow-button {
+      background: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .calender-main {
+    padding: 2rem;
+    text-align: center;
+  }
+}

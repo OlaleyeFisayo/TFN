@@ -1,29 +1,33 @@
 <template>
   <div class="box-container">
     <div class="img-side">
-      <img src="src/assets/image/slider-3.jpg" alt="testing" />
+      <img :src="image" alt="testing" />
     </div>
     <div class="text-side">
-      <h1 class="building-name">Chimney Villa</h1>
-      <p class="min-description">3 Bedrooms, 1 Parlour</p>
+      <h1 class="building-name">{{ name }}</h1>
+      <p class="min-description">{{ rooms }}</p>
+    </div>
+    <div class="price">
+      <span>₦{{ price }}</span>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 defineProps({
   name: String,
-  description: String,
+  rooms: String,
   image: String,
   price: String,
-});
+})
 </script>
 
 <style scoped lang="scss">
 .box-container {
-  width: fit-content;
+  max-width: 350px;
   width: 100%;
   cursor: pointer;
+  position: relative;
   @media (max-width: 420px) {
     grid-template-columns: 1fr;
   }
@@ -50,6 +54,16 @@ defineProps({
     .min-description {
       font-size: 0.95rem;
     }
+  }
+
+  .price {
+    position: absolute;
+    top: 1rem;
+    right: 0.5rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.55);
   }
 }
 </style>

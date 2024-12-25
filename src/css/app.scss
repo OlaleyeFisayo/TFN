@@ -17,10 +17,17 @@
   --mobile-view: 360px;
   --borderRadius: 0.8rem;
   --boxShadow: 22px 26px 18px -26px rgba(0, 0, 0, 0.09);
+  --max-width: 1440px;
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
+}
+
+.section {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
 }
 
 html {
@@ -86,9 +93,21 @@ p {
     color: var(--white);
   }
 
+  &.whiteWithRed {
+    background: var(--white);
+    color: var(--wine);
+    border: 1px solid var(--grey2);
+    display: inline;
+    width: fit-content;
+  }
+
   .right-icon {
     position: absolute;
     right: 0;
     top: 0;
   }
+}
+
+.error-message {
+  color: var(--wine2);
 }
