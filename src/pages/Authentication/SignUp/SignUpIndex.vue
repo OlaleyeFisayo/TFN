@@ -1,59 +1,75 @@
 <template>
   <section class="signup-section">
     <nav class="signup-topbar">
-      <h1>Sign Up</h1>
+      <h3>Sign Up</h3>
     </nav>
     <main class="signup-main">
       <div class="signup-details">
         <div class="signup-details-header">
-          <h1>Create your own account</h1>
+          <h3>Create your own account</h3>
         </div>
         <div class="signup-details-body">
-          <template v-for="form in formValue" :key="form.tag">
-            <AppInput
-              :type="form.type"
-              :label="form.label"
-              :placeholder="form.placeholder"
-              :tag="form.tag"
-              :value="form.value"
-              v-model="form.value"
-              :options="form.options"
-            >
-              <template #right-icon>
-                <component
-                  :is="form.img"
-                  :width="37"
-                  :height="24"
-                  color="black"
-                />
+          <div class="form" v-for="form in formValue" :key="form.tag">
+            <div class="item">
+              <p class="label">{{ form.label }}</p>
+              <template v-if="form.type === 'radio'">
+                <div v-for="(option, index) in form.options" :key="index">
+                  <q-radio
+                    dense
+                    :val="option"
+                    :label="option"
+                    v-model="form.value"
+                    :color="colours.wine"
+                  />
+                </div>
+                <q-btn label="Sign up" class="app-button primary mt-2">
+                  <div class="right-icon">
+                    <navigateNext :width="34" :height="36" />
+                  </div>
+                </q-btn>
               </template>
-            </AppInput>
-          </template>
-          <AppButton
-            label="Sign Up"
-            theme="primary"
-            @click="signUp"
-            :disabled="isSignUpFormComplete"
-          >
-            <template #right-icon>
-              <NavigateNext :width="34" :height="36" />
-            </template>
-          </AppButton>
+              <template v-else>
+                <q-input
+                  dense
+                  outlined
+                  :placeholder="form.placeholder"
+                  :color="colours.wine"
+                  v-model="form.value"
+                  :type="form.type"
+                >
+                  <template #append>
+                    <template v-if="form.type === 'password'">
+                      <q-icon
+                        :name="'visibility_off'"
+                        class="cursor-pointer mr-2"
+                        @click="form.type = 'text'"
+                      />
+                    </template>
+                    <template v-if="form.prev === 'password' && form.type === 'text'">
+                      <q-icon
+                        :name="'visibility'"
+                        class="cursor-pointer mr-2"
+                        @click="form.type = 'password'"
+                      />
+                    </template>
+                    <component :is="form.img" :width="37" :height="24" color="black" />
+                  </template>
+                </q-input>
+              </template>
+            </div>
+          </div>
           <p>
             By registering you accept our
             <RouterLink to="/termsofuse">Terms of Use</RouterLink> and
-            <RouterLink to="/policy">Privacy</RouterLink> and agree that we and
-            our selected partners may contact you with relevant offers and
-            services
+            <RouterLink to="/policy">Privacy</RouterLink> and agree that we and our selected
+            partners may contact you with relevant offers and services
           </p>
         </div>
         <div class="signup-details-footer">
-          <p>
+          <span>
             Already have an account
-            <RouterLink to="/login" class="login-link"
-              >Click here to sign in</RouterLink
-            >
-          </p>
+            <RouterLink to="/login" class="login-link">Click here to sign in</RouterLink>
+          </span>
         </div>
       </div>
     </main>
@@ -61,89 +77,71 @@
 </template>
 
 <script setup lang="ts">
-import arrowBack from "src/components/svg/arrow-back.vue";
-import AppInput from "src/components/ui/AppInput.vue";
-import { computed, ref } from "vue";
-import Contact from "src/components/svg/contact.vue";
-import EmailRounded from "src/components/svg/email-rounded.vue";
-import RoundPhone from "src/components/svg/round-phone.vue";
-import LockFill from "src/components/svg/lock-fill.vue";
-import { convertToObject } from "src/helpers";
-import AppButton from "src/components/ui/AppButton.vue";
-import NavigateNext from "src/components/svg/navigate-next.vue";
-import { isFormComplete } from "src/helpers";
-import { RouterLink } from "vue-router";
+import contactIcon from 'src/components/svg/contact-icon.vue'
+import emailRounded from 'src/components/svg/email-rounded.vue'
+import lockFill from 'src/components/svg/lock-fill.vue'
+import roundPhone from 'src/components/svg/round-phone.vue'
+import { ref } from 'vue'
+import { colours } from 'src/helpers/stylesheet'
+import navigateNext from 'src/components/svg/navigate-next.vue'
 
 const formValue = ref([
   {
-    label: "Name",
-    placeholder: "Enter name",
-    tag: "name",
+    label: 'Name',
+    placeholder: 'Enter name',
+    tag: 'name',
     value: null,
-    img: Contact,
+    img: contactIcon,
   },
   {
-    label: "Username",
-    placeholder: "Enter username",
-    tag: "username",
+    label: 'Username',
+    placeholder: 'Enter username',
+    tag: 'username',
     value: null,
-    img: Contact,
+    img: contactIcon,
   },
   {
-    label: "Email",
-    placeholder: "Enter email",
-    tag: "email",
+    label: 'Email',
+    placeholder: 'Enter email',
+    tag: 'email',
     value: null,
-    img: EmailRounded,
+    img: emailRounded,
   },
   {
-    label: "Phone Number",
-    placeholder: "Enter phone number",
-    tag: "phoneNumber",
+    label: 'Phone Number',
+    placeholder: 'Enter phone number',
+    tag: 'phoneNumber',
     value: null,
-    img: RoundPhone,
+    img: roundPhone,
   },
   {
-    label: "Password",
-    placeholder: "Enter password",
-    tag: "password",
-    type: "password",
+    label: 'Password',
+    placeholder: 'Enter password',
+    tag: 'password',
+    type: 'password',
     value: null,
-    img: LockFill,
+    img: lockFill,
+    prev: 'password',
   },
   {
-    label: "Confirm Password",
-    placeholder: "Confirm password",
-    tag: "confirmPassword",
-    type: "password",
+    label: 'Confirm Password',
+    placeholder: 'Confirm password',
+    tag: 'confirmPassword',
+    type: 'password',
     value: null,
-    img: LockFill,
+    img: lockFill,
+    prev: 'password',
   },
   {
-    label: "Account Type",
-    tag: "accountType",
-    type: "radio",
-    options: [
-      "Individual",
-      "Property Manager",
-      "Home Improvement",
-      "Agent/Landlord",
-    ],
+    label: 'Account Type',
+    tag: 'accountType',
+    type: 'radio',
+    options: ['Individual', 'Property Manager', 'Home Improvement', 'Agent/Landlord'],
     value: null,
   },
-]);
-
-const tAndC = ref(false);
-const isSignUpFormComplete = computed(() =>
-  isFormComplete(convertToObject(formValue.value)),
-);
-
-function signUp() {
-  const payload = convertToObject(formValue.value);
-  console.log(payload);
-}
+])
 </script>
 
 <style scoped lang="scss">
-@import url("./SignUpIndex.scss");
+@import url('./SignUpIndex.scss');
 </style>

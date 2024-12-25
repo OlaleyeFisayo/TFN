@@ -10,12 +10,7 @@
     </g>
     <defs>
       <clipPath id="clip0_54716_466">
-        <rect
-          width="24"
-          height="24"
-          fill="white"
-          transform="matrix(1 0 0 -1 0 24)"
-        />
+        <rect width="24" height="24" fill="white" transform="matrix(1 0 0 -1 0 24)" />
       </clipPath>
     </defs>
   </svg>
@@ -33,7 +28,7 @@ defineProps({
   },
   color: {
     type: String,
-    default: "white",
+    default: 'white',
   },
-});
+})
 </script>

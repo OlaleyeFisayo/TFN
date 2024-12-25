@@ -4,63 +4,62 @@
       <RouterLink to="/" class="backarrow-button">
         <arrowBack />
       </RouterLink>
-      <h1>Sign In</h1>
+      <h3>Sign In</h3>
       <div></div>
     </nav>
     <main class="signin-main">
       <div class="signin-details">
         <div class="signin-details-header">
-          <h1>Sign in to your account</h1>
+          <h3>Sign in to your account</h3>
         </div>
         <div class="signin-details-body">
-          <template v-for="form in formValue" :key="form.tag">
-            <AppInput
-              :type="form.type"
-              :label="form.label"
-              :placeholder="form.placeholder"
-              :tag="form.tag"
-              :value="form.value"
-              v-model="form.value"
-              :options="form.options"
-            >
-              <template #right-icon>
-                <component
-                  :is="form.img"
-                  :width="37"
-                  :height="24"
-                  color="black"
-                />
-              </template>
-            </AppInput>
-          </template>
-          <AppInput
-            type="checkbox"
-            :options="['Keep me Signed In']"
-            v-model="keepMeSignedIn"
-          />
-          <AppButton
-            label="Sign In"
-            theme="primary"
-            @click="signUp"
-            :disabled="isSignUpFormComplete"
-            class="submit-button"
-          >
-            <template #right-icon>
-              <NavigateNext :width="34" :height="36" />
-            </template>
-          </AppButton>
+          <div class="form" v-for="form in formValue" :key="form.tag">
+            <div class="item">
+              <p class="label">{{ form.label }}</p>
+              <q-input
+                dense
+                outlined
+                :placeholder="form.placeholder"
+                :color="colours.wine"
+                v-model="form.value"
+                :type="form.type"
+              >
+                <template #append>
+                  <template v-if="form.type === 'password'">
+                    <q-icon
+                      :name="'visibility_off'"
+                      class="cursor-pointer mr-2"
+                      @click="form.type = 'text'"
+                    />
+                  </template>
+                  <template v-if="form.prev === 'password' && form.type === 'text'">
+                    <q-icon
+                      :name="'visibility'"
+                      class="cursor-pointer mr-2"
+                      @click="form.type = 'password'"
+                    />
+                  </template>
+                  <component :is="form.img" :width="37" :height="24" color="black" />
+                </template>
+              </q-input>
+            </div>
+          </div>
+          <q-checkbox label="Keep me Signed In" v-model="keepMeSignedIn" :color="colours.wine" />
+          <q-btn label="Sign In" class="app-button primary mt-2">
+            <div class="right-icon">
+              <navigateNext :width="34" :height="36" />
+            </div>
+          </q-btn>
         </div>
         <div class="signin-details-footer">
-          <p>
+          <span>
             Lost your password?
-            <RouterLink to="/forgotpassword" class="login-link"
-              >Click here to Recover</RouterLink
-            >
-          </p>
-          <p>
+            <RouterLink to="/forgotpassword" class="login-link">Click here to Recover</RouterLink>
+          </span>
+          <span>
             Don't have an account?
             <RouterLink to="/" class="login-link">Sign Up now!</RouterLink>
-          </p>
+          </span>
         </div>
       </div>
       <div class="serviceAuth">
@@ -70,18 +69,14 @@
           <div class="line"></div>
         </div>
         <div class="serviceAuth-list">
-          <AppButton theme="serviceAuth">
-            <div class="serviceAuthText">
-              <Google />
-              <p class="serviceAuthText">Google</p>
-            </div>
-          </AppButton>
-          <AppButton theme="serviceAuth">
-            <div class="serviceAuthText">
-              <Apple />
-              <p>Apple</p>
-            </div>
-          </AppButton>
+          <q-btn class="app-button" padding="0.8rem">
+            <googleIcon />
+            <span class="ml-2">Google</span>
+          </q-btn>
+          <q-btn class="app-button" padding="0.8rem">
+            <appleIcon />
+            <span class="ml-2">Apple</span>
+          </q-btn>
         </div>
       </div>
     </main>
@@ -89,48 +84,36 @@
 </template>
 
 <script setup lang="ts">
-import arrowBack from "src/components/svg/arrow-back.vue";
-import AppInput from "src/components/ui/AppInput.vue";
-import { computed, ref } from "vue";
-import Contact from "src/components/svg/contact.vue";
-import LockFill from "src/components/svg/lock-fill.vue";
-import { convertToObject } from "src/helpers";
-import AppButton from "src/components/ui/AppButton.vue";
-import NavigateNext from "src/components/svg/navigate-next.vue";
-import { isFormComplete } from "src/helpers";
-import { RouterLink } from "vue-router";
-import Google from "src/components/svg/google.vue";
-import Apple from "src/components/svg/apple.vue";
+import contactIcon from 'src/components/svg/contact-icon.vue'
+import lockFill from 'src/components/svg/lock-fill.vue'
+import navigateNext from 'src/components/svg/navigate-next.vue'
+import appleIcon from 'src/components/svg/apple-icon.vue'
+import googleIcon from 'src/components/svg/google-icon.vue'
+import { colours } from 'src/helpers/stylesheet'
+import { ref } from 'vue'
 
 const formValue = ref([
   {
-    label: "Email or Username",
-    placeholder: "email or username",
-    tag: "email",
+    label: 'Email or Username',
+    placeholder: 'email or username',
+    tag: 'email',
     value: null,
-    img: Contact,
+    img: contactIcon,
   },
   {
-    label: "Password",
-    placeholder: "password",
-    tag: "password",
-    type: "password",
+    label: 'Password',
+    placeholder: 'password',
+    tag: 'password',
+    type: 'password',
     value: null,
-    img: LockFill,
+    img: lockFill,
+    prev: 'password',
   },
-]);
+])
 
-const keepMeSignedIn = ref(false);
-const isSignUpFormComplete = computed(() =>
-  isFormComplete(convertToObject(formValue.value)),
-);
-
-function signUp() {
-  const payload = convertToObject(formValue.value);
-  console.log(payload);
-}
+const keepMeSignedIn = ref(false)
 </script>
 
 <style scoped lang="scss">
-@import url("./SignInIndex.scss");
+@import url('./SignInIndex.scss');
 </style>

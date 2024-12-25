@@ -3,11 +3,7 @@
     <mask id="path-1-inside-1_54878_2370" fill="white">
       <path d="M0 0H37V24H0V0Z" />
     </mask>
-    <path
-      d="M1 24V0H-1V24H1Z"
-      :fill="color"
-      mask="url(#path-1-inside-1_54878_2370)"
-    />
+    <path d="M1 24V0H-1V24H1Z" :fill="color" mask="url(#path-1-inside-1_54878_2370)" />
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
@@ -29,7 +25,7 @@ defineProps({
   },
   color: {
     type: String,
-    default: "white",
+    default: 'white',
   },
-});
+})
 </script>
