@@ -83,7 +83,10 @@
           <li><RouterLink to="/faqs">FAQs</RouterLink></li>
         </ul>
         <div class="socials">
-          <q-icon name="facebook" size="lg" />
+          <facebookIcon />
+          <instagramIcon />
+          <youtubeIcon />
+          <linkedInIcon />
         </div>
       </div>
     </footer>
@@ -119,7 +122,10 @@ import SignInSolid from 'src/components/svg/sign-in-solid.vue'
 import LoginBold from 'src/components/svg/login-bold.vue'
 import QuestionFilled from 'src/components/svg/question-filled.vue'
 import UpCaret from 'src/components/svg/up-caret.vue'
-
+import instagramIcon from 'src/components/svg/instagram-icon.vue'
+import facebookIcon from 'src/components/svg/facebook-icon.vue'
+import youtubeIcon from 'src/components/svg/youtube-icon.vue'
+import linkedInIcon from 'src/components/svg/linkedIn-icon.vue'
 import { ref } from 'vue'
 
 const leftDrawerOpen = ref(false)
