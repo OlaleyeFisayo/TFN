@@ -126,13 +126,21 @@ import instagramIcon from 'src/components/svg/instagram-icon.vue'
 import facebookIcon from 'src/components/svg/facebook-icon.vue'
 import youtubeIcon from 'src/components/svg/youtube-icon.vue'
 import linkedInIcon from 'src/components/svg/linkedIn-icon.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const leftDrawerOpen = ref(false)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
+
+watch(
+  () => leftDrawerOpen.value,
+  (n) => {
+    console.log(n)
+    document.querySelector('body').classList.toggle('overflow')
+  },
+)
 const navList = ref([
   {
     label: 'Home',
