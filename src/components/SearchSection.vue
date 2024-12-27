@@ -174,6 +174,7 @@ const toggleMoreOptions = () => {
   transform: translateY(-210%);
   overflow-x: hidden;
   overflow-y: scroll;
+  z-index: 15;
 
   &.show {
     transform: translateY(0);
