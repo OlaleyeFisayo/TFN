@@ -23,12 +23,45 @@
       <AppGrid class="form mt-4">
         <div class="item" v-for="form in formValues" :key="form.tag">
           <span class="label">{{ form.label }}</span>
-          <q-select v-model="form.value" :options="form.options" outlined :color="colours.wine" />
+          <template v-if="form.type === 'text'">
+            <q-input
+              dense
+              outlined
+              v-model="form.value"
+              :placeholder="form.placeholder"
+              :color="colours.wine"
+            />
+          </template>
+          <template v-else>
+            <q-select
+              v-model="form.value"
+              :options="form.options"
+              outlined
+              :color="colours.wine"
+              dense
+            />
+          </template>
         </div>
         <template v-if="moreOptions">
           <div class="item" v-for="form in moreFormValues" :key="form.tag">
             <p class="label">{{ form.label }}</p>
-            <q-select v-model="form.value" :options="form.options" outlined :color="colours.wine" />
+            <template v-if="form.type === 'text'"
+              ><q-input
+                dense
+                outlined
+                v-model="form.value"
+                :placeholder="form.placeholder"
+                :color="colours.wine"
+            /></template>
+            <template v-else>
+              <q-select
+                v-model="form.value"
+                :options="form.options"
+                outlined
+                :color="colours.wine"
+                dense
+              />
+            </template>
           </div>
         </template>
       </AppGrid>
@@ -119,8 +152,9 @@ const moreFormValues = ref([
   {
     label: 'Square feet',
     tag: 'square_feet',
-    options: ['Any'],
-    value: 'Any',
+    type: 'text',
+    value: null,
+    placeholder: 'e.g 1',
   },
   {
     label: 'Year Built',
@@ -174,7 +208,7 @@ const toggleMoreOptions = () => {
   transform: translateY(-210%);
   overflow-x: hidden;
   overflow-y: scroll;
-  z-index: 15;
+  z-index: 0;
 
   &.show {
     transform: translateY(0);
