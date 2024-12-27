@@ -183,6 +183,7 @@ const toggleMoreOptions = () => {
 .section-content {
   padding: 2rem;
   background: rgba($color: #ffffff, $alpha: 0.7);
+  min-height: calc(100dvh - 52px);
 }
 
 .form {
