@@ -48,9 +48,14 @@
               </div>
               <ul class="child" v-if="nav.mobileDropdown">
                 <li v-for="list in nav.list" :key="list.label">
-                  <RouterLink :to="list.to" class="title" @click="toggleLeftDrawer">{{
-                    list.label
-                  }}</RouterLink>
+                  <template v-if="list.to">
+                    <RouterLink :to="list.to" class="title" @click="toggleLeftDrawer">{{
+                      list.label
+                    }}</RouterLink>
+                  </template>
+                  <template v-else>
+                    <span class="title">{{ list.label }}</span>
+                  </template>
                 </li>
               </ul>
             </template>
