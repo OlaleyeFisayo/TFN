@@ -1,7 +1,13 @@
 <template>
   <section class="home-section">
     <div class="search-section section">
-      <q-input placeholder="Search" :color="colours.wine" outlined dense v-model="searchInput">
+      <q-input
+        placeholder="Search"
+        :color="colours.wine"
+        outlined
+        dense
+        v-model="store.searchInput"
+      >
         <template #append>
           <searchIcon color="#898989" :width="30" />
         </template>
@@ -94,20 +100,24 @@
         </div>
       </div>
     </div>
+    <SearchSection :isVisible="store.searchInput !== ''" :inputValue="searchInput" />
   </section>
 </template>
 
 <script setup>
 import searchIcon from 'src/components/svg/search-icon.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import AppGrid from 'src/components/ui/AppGrid.vue'
 import AppItems from 'src/components/ui/AppItems.vue'
 import { colours } from 'src/helpers/stylesheet'
+import SearchSection from 'src/components/SearchSection.vue'
+import { useSearchStore } from 'src/stores/UI/search'
 
 // Search Section
 const searchInput = ref('')
+const store = useSearchStore()
 
-// Image Slider Componentx
+// Image Slider Component
 const imgSliderContent = ref([
   {
     id: 0,
@@ -188,6 +198,17 @@ const nearbyPlaces = ref([
     price: '400,000',
   },
 ])
+
+watch(
+  () => store.searchInput,
+  (n) => {
+    if (n !== '') {
+      document.querySelector('body').classList.add('overflow')
+    } else if (n === '') {
+      document.querySelector('body').classList.remove('overflow')
+    }
+  },
+)
 </script>
 
 <style scoped lang="scss">

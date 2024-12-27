@@ -24,7 +24,6 @@ defineProps({
 
 <style scoped lang="scss">
 .box-container {
-  max-width: 350px;
   width: 100%;
   cursor: pointer;
   position: relative;

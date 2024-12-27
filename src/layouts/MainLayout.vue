@@ -48,12 +48,16 @@
               </div>
               <ul class="child" v-if="nav.mobileDropdown">
                 <li v-for="list in nav.list" :key="list.label">
-                  <RouterLink :to="list.to" class="title">{{ list.label }}</RouterLink>
+                  <RouterLink :to="list.to" class="title" @click="toggleLeftDrawer">{{
+                    list.label
+                  }}</RouterLink>
                 </li>
               </ul>
             </template>
             <template v-else>
-              <RouterLink class="title" :to="nav.to">{{ nav.label }}</RouterLink>
+              <RouterLink class="title" :to="nav.to" @click="toggleLeftDrawer">{{
+                nav.label
+              }}</RouterLink>
             </template>
           </li>
         </ul>
@@ -137,8 +141,11 @@ function toggleLeftDrawer() {
 watch(
   () => leftDrawerOpen.value,
   (n) => {
-    console.log(n)
-    document.querySelector('body').classList.toggle('overflow')
+    if (n) {
+      document.querySelector('body').classList.add('overflow')
+    } else {
+      document.querySelector('body').classList.remove('overflow')
+    }
   },
 )
 const navList = ref([
