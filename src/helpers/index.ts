@@ -19,10 +19,14 @@ export function checkValues(arr) {
   }
 }
 
-export const isFormComplete = (formObject: any) => Object.values(formObject).some((v) => !v)
+export const isFormComplete = (formObject) => Object.values(formObject).some((v) => !v)
 
 export const isPasswordSame = (form) => {
   const { value: pValue } = form.find((value) => value.tag === 'password')
   const { value: cpValue } = form.find((value) => value.tag === 'confirmPassword')
   return pValue === cpValue
+}
+
+export const changeValueOfObject = (value) => {
+  return value.toLowerCase().replace(/\s+/g, '_').replace(/\//g, '_')
 }

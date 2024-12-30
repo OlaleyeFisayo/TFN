@@ -45,7 +45,13 @@
             </div>
           </div>
           <q-checkbox label="Keep me Signed In" v-model="keepMeSignedIn" :color="colours.wine" />
-          <q-btn label="Sign In" class="app-button primary mt-2" :disable="isSignFormCompleted">
+          <q-btn
+            label="Sign In"
+            class="app-button primary mt-2"
+            :disable="isSignFormCompleted"
+            @click="signIn"
+            :loading="authLoading"
+          >
             <div class="right-icon">
               <navigateNext :width="34" :height="36" />
             </div>
@@ -93,12 +99,16 @@ import arrowBack from 'src/components/svg/arrow-back.vue'
 import { colours } from 'src/helpers/stylesheet'
 import { computed, ref } from 'vue'
 import { convertToObject, isFormComplete } from 'src/helpers'
+import { useAuthStore } from 'src/stores/services/auth'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const formValue = ref([
   {
     label: 'Email or Username',
     placeholder: 'Email or Username',
-    tag: 'email',
+    tag: 'identifier',
     value: null,
     img: contactIcon,
   },
@@ -112,9 +122,19 @@ const formValue = ref([
     prev: 'password',
   },
 ])
-
+const { login } = useAuthStore()
+const { success: authSuccess, loading: authLoading } = storeToRefs(useAuthStore())
 const keepMeSignedIn = ref(false)
 const isSignFormCompleted = computed(() => isFormComplete(convertToObject(formValue.value)))
+const signIn = async () => {
+  const payload = convertToObject(formValue.value)
+  await login(payload)
+  if (authSuccess) {
+    router.push({
+      path: '/',
+    })
+  }
+}
 </script>
 
 <style scoped lang="scss">

@@ -48,7 +48,9 @@ export default defineConfig((ctx) => {
 
       publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        API: 'https://aab6-102-207-252-2.ngrok-free.app/api',
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -110,7 +112,7 @@ export default defineConfig((ctx) => {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ['Notify'],
     },
 
     // animations: 'all', // --- includes all animations

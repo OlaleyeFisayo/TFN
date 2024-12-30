@@ -66,6 +66,8 @@
             label="Sign up"
             class="app-button primary mt-2"
             :disable="isSignUpFormCompleted || !confirmPassword"
+            @click="createAccount"
+            :loading="authLoading"
           >
             <div class="right-icon">
               <navigateNext :width="34" :height="36" />
@@ -98,10 +100,14 @@ import arrowBack from 'src/components/svg/arrow-back.vue'
 import { computed, ref } from 'vue'
 import { colours } from 'src/helpers/stylesheet'
 import navigateNext from 'src/components/svg/navigate-next.vue'
-import { isFormComplete } from 'src/helpers'
+import { changeValueOfObject, isFormComplete } from 'src/helpers'
 import { convertToObject } from 'src/helpers'
 import { isPasswordSame } from 'src/helpers'
+import { useAuthStore } from 'src/stores/services/auth'
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const formValue = ref([
   {
     label: 'Name',
@@ -157,9 +163,21 @@ const formValue = ref([
     value: null,
   },
 ])
-
+const { success: authSuccess, loading: authLoading } = storeToRefs(useAuthStore())
+const { signUp } = useAuthStore()
 const isSignUpFormCompleted = computed(() => isFormComplete(convertToObject(formValue.value)))
 const confirmPassword = computed(() => isPasswordSame(formValue.value))
+
+const createAccount = async () => {
+  const payload = convertToObject(formValue.value)
+  payload.accountType = changeValueOfObject(payload.accountType)
+  await signUp(payload)
+  if (authSuccess) {
+    router.push({
+      path: '/login',
+    })
+  }
+}
 </script>
 
 <style scoped lang="scss">
