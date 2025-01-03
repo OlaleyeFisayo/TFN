@@ -32,7 +32,7 @@
       <AppAgents />
     </div>
     <div class="mt-4 section pagination">
-      <q-btn label="Previous" no-caps :color="colours.wine" icon-right="" />
+      <q-btn label="Previous" no-caps :color="colours.wine" />
       <q-btn label="Next" no-caps :color="colours.wine" />
     </div>
   </section>
