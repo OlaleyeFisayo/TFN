@@ -16,7 +16,7 @@
           :color="colours.wine"
           v-model="searchOptionValue"
         />
-        <q-btn label="Search" no-caps :color="colours.wine" :disable="searchInput" />
+        <q-btn label="Search" no-caps :color="colours.wine" :disable="searchInput === ''" />
       </div>
     </div>
     <div class="section results mt-4">
