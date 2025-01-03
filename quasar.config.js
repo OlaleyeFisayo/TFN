@@ -49,7 +49,7 @@ export default defineConfig((ctx) => {
       publicPath: '/',
       // analyze: true,
       env: {
-        API: 'https://6055-102-207-252-2.ngrok-free.app/api',
+        API: 'https://realestatewebappbackend-production.up.railway.app/api',
       },
       // rawDefine: {}
       // ignorePublicFolder: true,

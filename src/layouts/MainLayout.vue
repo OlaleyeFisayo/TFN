@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh ppp lFf">
+  <section>
     <header elevated class="header">
       <div class="header-nav">
         <router-link to="/home" class="logo">
@@ -21,7 +21,16 @@
     <div :class="`mobile-nav-list ${leftDrawerOpen ? 'show' : ''}`">
       <div class="sidebar-content">
         <div class="action">
-          <button class="close-btn" @click="toggleLeftDrawer">&times;</button>
+          <q-btn
+            class="close-btn"
+            @click="toggleLeftDrawer"
+            dense
+            icon="close"
+            size="lg"
+            aria-label="Close Menu"
+            flat
+            round
+          />
         </div>
         <div class="logo-and-name">
           <div class="logo-container">
@@ -33,13 +42,13 @@
           </h5>
         </div>
         <ul class="nav-list">
-          <template v-if="authLoading">
+          <template v-if="userLoading">
             <template v-for="i in 10" :key="i">
-              <q-skeleton />
+              <q-skeleton class="mb-2" />
             </template>
           </template>
           <template v-else v-for="(nav, index) in navList" :key="index">
-            <li v-if="nav.for.includes(userType)">
+            <li v-if="nav.for.includes(user?.accountType)">
               <template v-if="nav.dropdown">
                 <div class="toggle">
                   <span class="title">{{ nav.label }}</span>
@@ -83,9 +92,9 @@
       <div class="darkside" @click="toggleLeftDrawer"></div>
     </div>
 
-    <q-page-container>
+    <div>
       <router-view />
-    </q-page-container>
+    </div>
 
     <footer class="top-footer">
       <div class="footer-content">
@@ -131,7 +140,7 @@
         </ul>
       </div>
     </footer>
-  </q-layout>
+  </section>
 </template>
 
 <script setup>
@@ -148,9 +157,7 @@ import instagramIcon from 'src/components/svg/instagram-icon.vue'
 import facebookIcon from 'src/components/svg/facebook-icon.vue'
 import youtubeIcon from 'src/components/svg/youtube-icon.vue'
 import linkedInIcon from 'src/components/svg/linkedIn-icon.vue'
-import { computed, ref, watch } from 'vue'
-// import { useAuthStore } from 'src/stores/services/auth'
-// import { useUserStore } from 'src/stores/services/user'
+import { onMounted, ref, shallowRef, watch } from 'vue'
 import { USERTYPES } from 'src/helpers/types'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from 'src/stores/services/auth'
@@ -162,12 +169,9 @@ import CardIcon from 'src/components/svg/card-icon.vue'
 import UpgradeIcon from 'src/components/svg/upgrade-icon.vue'
 
 const leftDrawerOpen = ref(false)
-// const { getAuthToken } = useAuthStore()
-const { loading: authLoading } = storeToRefs(useAuthStore())
-const { getUserAccountType } = useUserStore()
-const userType = computed(() =>
-  Object.values(USERTYPES).includes(getUserAccountType) ? getUserAccountType : USERTYPES.NO_TYPE,
-)
+const { getAuthToken } = useAuthStore()
+const { getUserDetails } = useUserStore()
+const { user, loading: userLoading } = storeToRefs(useUserStore())
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
@@ -183,7 +187,7 @@ watch(
     }
   },
 )
-const navList = ref([
+const navList = shallowRef([
   {
     label: 'Home',
     to: '/',
@@ -462,17 +466,16 @@ const navList = ref([
 ])
 
 const toggleMobileDropdown = (index) => {
-  navList.value[index].mobileDropdown = !navList.value[index].mobileDropdown
+  navList.value = navList.value.map((item, i) =>
+    i === index ? { ...item, mobileDropdown: !item.mobileDropdown } : item,
+  )
 }
 
-// onMounted(async () => {
-//   if (getAuthToken) {
-//     await getUserDetails();
-//     console.log(userType.value)
-//   } else {
-//     console.log(getAuthToken)
-//   }
-// })
+onMounted(async () => {
+  if (getAuthToken) {
+    await getUserDetails()
+  }
+})
 </script>
 
 <style lang="scss" scoped>

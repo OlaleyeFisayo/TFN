@@ -47,7 +47,7 @@
 
   .sidebar-content {
     background-color: var(--white);
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem;
     overflow-y: scroll;
 
     .action {
@@ -55,13 +55,13 @@
       justify-content: right;
 
       button {
-        font-weight: 700;
-        font-size: 4rem;
-        cursor: pointer;
-        background: inherit;
-        border: none;
-        line-height: normal;
-        color: var(--black) !important;
+        // font-weight: 700;
+        // font-size: 4rem;
+        // cursor: pointer;
+        // background: inherit;
+        // border: none;
+        // line-height: normal;
+        // color: var(--black) !important;
       }
     }
 

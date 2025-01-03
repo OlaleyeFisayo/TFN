@@ -18,6 +18,11 @@ const routes = [
             name: 'agent',
             component: () => import('pages/Agent/AgentIndex.vue'),
           },
+          {
+            path: 'agent/:id',
+            name: 'agentDetails',
+            component: () => import('pages/Agent/AgentDetail/AgentDetailsIndex.vue'),
+          },
         ],
       },
       {
