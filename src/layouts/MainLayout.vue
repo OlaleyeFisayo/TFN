@@ -33,44 +33,51 @@
           </h5>
         </div>
         <ul class="nav-list">
-          <li v-for="(nav, index) in navList" :key="index">
-            <template v-if="nav.dropdown">
-              <div class="toggle">
-                <span class="title">{{ nav.label }}</span>
-                <button class="toggle-button" @click="toggleMobileDropdown(index)">
-                  <template v-if="nav.mobileDropdown">
-                    <UpCaret color="black" :width="20" :height="20" />
-                  </template>
-                  <template v-else>
-                    <DownCaret color="black" />
-                  </template>
-                </button>
-              </div>
-              <ul class="child" v-if="nav.mobileDropdown">
-                <li v-for="list in nav.list" :key="list.label">
-                  <template v-if="list.to">
-                    <RouterLink :to="list.to" class="title" @click="toggleLeftDrawer">
-                      <component :is="list.img" color="black" :width="28" :height="28" />
-                      <span>
-                        {{ list.label }}
-                      </span>
-                    </RouterLink>
-                  </template>
-                  <template v-else>
-                    <div class="title">
-                      <component :is="list.img" color="black" :width="28" :height="28" />
-                      <span> {{ list.label }}</span>
-                    </div>
-                  </template>
-                </li>
-              </ul>
+          <template v-if="authLoading">
+            <template v-for="i in 10" :key="i">
+              <q-skeleton />
             </template>
-            <template v-else>
-              <RouterLink class="title" :to="nav.to" @click="toggleLeftDrawer">{{
-                nav.label
-              }}</RouterLink>
-            </template>
-          </li>
+          </template>
+          <template v-else v-for="(nav, index) in navList" :key="index">
+            <li v-if="nav.for.includes(userType)">
+              <template v-if="nav.dropdown">
+                <div class="toggle">
+                  <span class="title">{{ nav.label }}</span>
+                  <button class="toggle-button" @click="toggleMobileDropdown(index)">
+                    <template v-if="nav.mobileDropdown">
+                      <UpCaret color="black" :width="20" :height="20" />
+                    </template>
+                    <template v-else>
+                      <DownCaret color="black" />
+                    </template>
+                  </button>
+                </div>
+                <ul class="child" v-if="nav.mobileDropdown">
+                  <li v-for="list in nav.list" :key="list.label">
+                    <template v-if="list.to">
+                      <RouterLink :to="list.to" class="title" @click="toggleLeftDrawer">
+                        <component :is="list.img" color="black" :width="28" :height="28" />
+                        <span>
+                          {{ list.label }}
+                        </span>
+                      </RouterLink>
+                    </template>
+                    <template v-else>
+                      <div class="title">
+                        <component :is="list.img" color="black" :width="28" :height="28" />
+                        <span> {{ list.label }}</span>
+                      </div>
+                    </template>
+                  </li>
+                </ul>
+              </template>
+              <template v-else>
+                <RouterLink class="title" :to="nav.to" @click="toggleLeftDrawer">{{
+                  nav.label
+                }}</RouterLink>
+              </template>
+            </li>
+          </template>
         </ul>
       </div>
       <div class="darkside" @click="toggleLeftDrawer"></div>
@@ -141,15 +148,26 @@ import instagramIcon from 'src/components/svg/instagram-icon.vue'
 import facebookIcon from 'src/components/svg/facebook-icon.vue'
 import youtubeIcon from 'src/components/svg/youtube-icon.vue'
 import linkedInIcon from 'src/components/svg/linkedIn-icon.vue'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 // import { useAuthStore } from 'src/stores/services/auth'
 // import { useUserStore } from 'src/stores/services/user'
 import { USERTYPES } from 'src/helpers/types'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from 'src/stores/services/auth'
+import { useUserStore } from 'src/stores/services/user'
+import SolidEye from 'src/components/svg/solid-eye.vue'
+import AddSolid from 'src/components/svg/add-solid.vue'
+import AnnouncementSolid from 'src/components/svg/announcement-solid.vue'
+import CardIcon from 'src/components/svg/card-icon.vue'
+import UpgradeIcon from 'src/components/svg/upgrade-icon.vue'
 
 const leftDrawerOpen = ref(false)
 // const { getAuthToken } = useAuthStore()
-// const {getUserDetails, getUserAccountType} = useUserStore()
-// const userType = computed(() => Object.values(USERTYPES).includes(getUserAccountType) ? getUserAccountType : USERTYPES.NO_TYPE)
+const { loading: authLoading } = storeToRefs(useAuthStore())
+const { getUserAccountType } = useUserStore()
+const userType = computed(() =>
+  Object.values(USERTYPES).includes(getUserAccountType) ? getUserAccountType : USERTYPES.NO_TYPE,
+)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
@@ -175,6 +193,24 @@ const navList = ref([
       USERTYPES.AGENT_LANDLORD,
       USERTYPES.HOME_IMPROVEMENT,
       USERTYPES.NO_TYPE,
+    ],
+  },
+  {
+    label: 'Alerts',
+    dropdown: true,
+    mobileDropdown: false,
+    for: [USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+    list: [
+      {
+        label: 'Property Seekers Request',
+        img: QuestionFilled,
+        to: '/property-seekers-request',
+      },
+      {
+        label: 'My Property',
+        img: QuestionFilled,
+        to: '/my-property',
+      },
     ],
   },
   {
@@ -207,6 +243,29 @@ const navList = ref([
     ],
   },
   {
+    label: 'Listings',
+    dropdown: true,
+    mobileDropdown: false,
+    for: [USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+    list: [
+      {
+        label: 'Add Property',
+        img: AddSolid,
+        to: '/add-property',
+      },
+      {
+        label: 'My Listings',
+        img: QuestionFilled,
+        to: '/my-listings',
+      },
+      {
+        label: 'Listings Statistics',
+        img: QuestionFilled,
+        to: '/listings-statistics',
+      },
+    ],
+  },
+  {
     label: 'Calender',
     to: '/calender',
     for: [
@@ -215,6 +274,42 @@ const navList = ref([
       USERTYPES.AGENT_LANDLORD,
       USERTYPES.HOME_IMPROVEMENT,
       USERTYPES.NO_TYPE,
+    ],
+  },
+  {
+    label: 'Saved & Requested',
+    dropdown: true,
+    mobileDropdown: false,
+    for: [USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+    list: [
+      {
+        label: 'My Saved Property',
+        img: QuestionFilled,
+        to: '/my-saved-property',
+      },
+      {
+        label: 'My Property Request',
+        img: AnnouncementSolid,
+        to: '/my-property-request',
+      },
+    ],
+  },
+  {
+    label: 'Subscriptions',
+    dropdown: true,
+    mobileDropdown: false,
+    for: [USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+    list: [
+      {
+        label: 'My Subscriptions',
+        img: CardIcon,
+        to: '/subscriptions',
+      },
+      {
+        label: 'Upgrade Account',
+        img: UpgradeIcon,
+        to: '/upgrade account',
+      },
     ],
   },
   {
@@ -230,7 +325,7 @@ const navList = ref([
   },
   {
     label: 'Rent a Property',
-    to: '/sell-property',
+    to: '/rent-property',
     for: [
       USERTYPES.INDIVIDUAL,
       USERTYPES.PROPERTY_MANAGER,
@@ -240,16 +335,69 @@ const navList = ref([
     ],
   },
   {
+    label: 'Sell a Property',
+    to: '/sell-property',
+    for: [USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+  },
+  {
+    label: 'Property Request',
+    dropdown: true,
+    mobileDropdown: false,
+    for: [USERTYPES.INDIVIDUAL, USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+    list: [
+      {
+        label: 'Post Request',
+        img: QuestionFilled,
+        to: '/post-request',
+      },
+      {
+        label: 'View Requests',
+        img: SolidEye,
+        to: '/post-request',
+      },
+    ],
+  },
+  {
+    label: 'Resources',
+    to: '/resources',
+    for: [USERTYPES.PROPERTY_MANAGER],
+  },
+  {
+    label: 'Account Management',
+    dropdown: true,
+    mobileDropdown: false,
+    for: [USERTYPES.INDIVIDUAL, USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+    list: [
+      {
+        label: 'View Profile',
+        img: QuestionFilled,
+        to: '/profile',
+      },
+    ],
+  },
+  {
+    label: 'Documents',
+    dropdown: true,
+    mobileDropdown: false,
+    for: [USERTYPES.AGENT_LANDLORD, USERTYPES.PROPERTY_MANAGER],
+    list: [
+      {
+        label: 'My Documents',
+        img: QuestionFilled,
+        to: '/documents',
+      },
+      {
+        label: 'Tenancy Agreement',
+        img: QuestionFilled,
+        to: '/tenancy-agreement',
+      },
+    ],
+  },
+  {
     label: 'Profile',
     dropdown: true,
     mobileDropdown: false,
-    for: [
-      USERTYPES.INDIVIDUAL,
-      USERTYPES.PROPERTY_MANAGER,
-      USERTYPES.AGENT_LANDLORD,
-      USERTYPES.HOME_IMPROVEMENT,
-      USERTYPES.NO_TYPE,
-    ],
+    for: [USERTYPES.NO_TYPE],
     list: [
       {
         label: 'Sign In',

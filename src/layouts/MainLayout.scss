@@ -107,21 +107,24 @@
           background: inherit;
           border: none;
           cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
 
       .child {
-        margin-top: 0.3rem;
         display: flex;
         flex-direction: column;
         list-style: none;
         padding-left: 1rem;
         gap: 0.3rem;
+        margin-top: 0.3rem;
 
         .title {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.3rem;
 
           span {
             width: fit-content;

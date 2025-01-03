@@ -1,4 +1,4 @@
-import { Notify } from 'quasar';
+import { Notify } from 'quasar'
 
 export default {
   success(message) {
@@ -9,7 +9,7 @@ export default {
       position: 'top-right',
       progress: false,
       closeBtn: true,
-    });
+    })
   },
   error(message) {
     Notify.create({
@@ -19,7 +19,7 @@ export default {
       position: 'top-right',
       progress: false,
       closeBtn: true,
-    });
+    })
   },
   warning(message) {
     Notify.create({
@@ -28,6 +28,6 @@ export default {
       position: 'top-right',
       progress: false,
       closeBtn: true,
-    });
+    })
   },
-};
+}

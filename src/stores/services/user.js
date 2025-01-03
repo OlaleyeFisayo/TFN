@@ -36,7 +36,7 @@ export const useUserStore = defineStore('user', {
   },
   getters: {
     getUserAccountType(state) {
-      return state.user.accounttype
+      return state.user?.accounttype
     },
   },
 })
