@@ -31,7 +31,7 @@ const routes = [
         component: () => import('pages/TermsOfUse/TermsOfUseIndex.vue'),
       },
       {
-        path: '/policy',
+        path: 'policy',
         name: 'policy',
         component: () => import('pages/Privacy/PrivacyIndex.vue'),
       },

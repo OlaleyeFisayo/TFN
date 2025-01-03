@@ -49,12 +49,18 @@
               <ul class="child" v-if="nav.mobileDropdown">
                 <li v-for="list in nav.list" :key="list.label">
                   <template v-if="list.to">
-                    <RouterLink :to="list.to" class="title" @click="toggleLeftDrawer">{{
-                      list.label
-                    }}</RouterLink>
+                    <RouterLink :to="list.to" class="title" @click="toggleLeftDrawer">
+                      <component :is="list.img" color="black" :width="28" :height="28" />
+                      <span>
+                        {{ list.label }}
+                      </span>
+                    </RouterLink>
                   </template>
                   <template v-else>
-                    <span class="title">{{ list.label }}</span>
+                    <div class="title">
+                      <component :is="list.img" color="black" :width="28" :height="28" />
+                      <span> {{ list.label }}</span>
+                    </div>
                   </template>
                 </li>
               </ul>
@@ -136,8 +142,14 @@ import facebookIcon from 'src/components/svg/facebook-icon.vue'
 import youtubeIcon from 'src/components/svg/youtube-icon.vue'
 import linkedInIcon from 'src/components/svg/linkedIn-icon.vue'
 import { ref, watch } from 'vue'
+// import { useAuthStore } from 'src/stores/services/auth'
+// import { useUserStore } from 'src/stores/services/user'
+import { USERTYPES } from 'src/helpers/types'
 
 const leftDrawerOpen = ref(false)
+// const { getAuthToken } = useAuthStore()
+// const {getUserDetails, getUserAccountType} = useUserStore()
+// const userType = computed(() => Object.values(USERTYPES).includes(getUserAccountType) ? getUserAccountType : USERTYPES.NO_TYPE)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
@@ -157,11 +169,25 @@ const navList = ref([
   {
     label: 'Home',
     to: '/',
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
   },
   {
     label: 'Agent Finder',
     dropdown: true,
     mobileDropdown: false,
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
     list: [
       {
         label: 'Agent',
@@ -183,19 +209,47 @@ const navList = ref([
   {
     label: 'Calender',
     to: '/calender',
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
   },
   {
     label: 'Buy a Property',
     to: '/buy-property',
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
   },
   {
     label: 'Rent a Property',
     to: '/sell-property',
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
   },
   {
     label: 'Profile',
     dropdown: true,
     mobileDropdown: false,
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
     list: [
       {
         label: 'Sign In',
@@ -213,6 +267,13 @@ const navList = ref([
     label: 'Contact Us',
     dropdown: true,
     mobileDropdown: false,
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
     list: [
       {
         label: '+2348029992888, +2348034934952',
@@ -231,16 +292,39 @@ const navList = ref([
   {
     label: 'FAQs',
     to: '/faqs',
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
   },
   {
     label: 'TFN Yearly Report',
     to: '/yearly-report',
+    for: [
+      USERTYPES.INDIVIDUAL,
+      USERTYPES.PROPERTY_MANAGER,
+      USERTYPES.AGENT_LANDLORD,
+      USERTYPES.HOME_IMPROVEMENT,
+      USERTYPES.NO_TYPE,
+    ],
   },
 ])
 
 const toggleMobileDropdown = (index) => {
   navList.value[index].mobileDropdown = !navList.value[index].mobileDropdown
 }
+
+// onMounted(async () => {
+//   if (getAuthToken) {
+//     await getUserDetails();
+//     console.log(userType.value)
+//   } else {
+//     console.log(getAuthToken)
+//   }
+// })
 </script>
 
 <style lang="scss" scoped>

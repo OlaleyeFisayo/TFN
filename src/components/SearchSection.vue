@@ -238,14 +238,13 @@ const toggleMoreOptions = () => {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: 500ms ease-in-out;
-  transform: translateY(-210%);
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 0;
+  display: none;
 
   &.show {
-    transform: translateY(0);
+    display: block;
   }
 }
 

@@ -107,9 +107,8 @@ import contactIcon from 'src/components/svg/contact-icon.vue'
 import arrowBack from 'src/components/svg/arrow-back.vue'
 import lockFill from 'src/components/svg/lock-fill.vue'
 import saveIcon from 'src/components/svg/save-icon.vue'
-import { convertToObject, isFormComplete } from 'src/helpers'
+import { convertToObject, isFormComplete, isPasswordSame } from 'src/helpers'
 import { colours } from 'src/helpers/stylesheet'
-import { isPasswordSame } from 'src/helpers'
 
 const stageOneformValue = ref([
   {

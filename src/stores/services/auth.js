@@ -3,9 +3,8 @@ import axiosInstance from '../axiosConfig'
 import toast from 'src/helpers/toast'
 import { AxiosError } from 'axios'
 
-export const useAuthStore = defineStore('user', {
+export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: null,
     loading: false,
     success: false,
     message: null,
@@ -70,22 +69,9 @@ export const useAuthStore = defineStore('user', {
       this.access = null
       this.clearToken('access')
     },
-
-    setResetToken(token) {
-      this.clearResetToken()
-      this.reset = token
-      this.setToken('reset', token)
-    },
-
-    clearResetToken() {
-      this.reset = null
-      this.clearToken('reset')
-    },
-
     setToken(key, token) {
       localStorage.setItem(key, JSON.stringify(token))
     },
-
     clearToken(key) {
       if (localStorage.getItem(key)) {
         localStorage.removeItem(key)
