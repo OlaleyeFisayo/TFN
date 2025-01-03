@@ -13,6 +13,11 @@ const routes = [
             path: 'home',
             component: () => import('pages/Home/HomeIndex.vue'),
           },
+          {
+            path: 'agent',
+            name: 'agent',
+            component: () => import('pages/Agent/AgentIndex.vue'),
+          },
         ],
       },
       {
