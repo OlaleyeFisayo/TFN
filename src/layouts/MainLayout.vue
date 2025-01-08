@@ -48,7 +48,13 @@
             </template>
           </template>
           <template v-else v-for="(nav, index) in navList" :key="index">
-            <li v-if="nav.for.includes(user?.accountType)">
+            <li
+              v-if="
+                Object.values(USERTYPES).includes(user?.accountType)
+                  ? nav.for.includes(user?.accountType)
+                  : nav.for.includes(USERTYPES.NO_TYPE)
+              "
+            >
               <template v-if="nav.dropdown">
                 <div class="toggle">
                   <span class="title">{{ nav.label }}</span>
