@@ -9,6 +9,7 @@
           <p class="agent-name mt-4">Abuja LandLady</p>
           <p class="agent-website mt-2">Abjidy.tfnproperties.com</p>
           <div class="reviews mt-2">
+            <StarIcon v-for="i in 5" :key="i" />
             <p>5.0 . 29 Reviews</p>
           </div>
           <p class="agent-address mt-2">
@@ -29,6 +30,7 @@
             </q-btn>
           </div>
           <q-btn class="app-button primary mt-2" label="Email Agent" />
+
           <div class="report-agent-container">
             <q-btn
               label="Report Agent"
@@ -37,7 +39,15 @@
               flat
               @click="toggleReportAgentModal"
             />
-            <q-btn no-caps color="white" :text-color="colours.wine">
+          </div>
+          <div class="mt-2 agent-members" v-if="showAgentMembers">
+            <AppAgentMember />
+            <AppAgentMember />
+            <AppAgentMember />
+            <AppAgentMember />
+          </div>
+          <div class="report-agent-container mt-2">
+            <q-btn no-caps color="white" :text-color="colours.wine" @click="toggleAgentMembers">
               <div class="space-button">
                 <span>Our Members</span>
                 <DownCaret color="#7e1416" />
@@ -47,6 +57,44 @@
         </div>
       </div>
       <div class="black-background"></div>
+    </section>
+    <section class="more-agent-detail mt-4">
+      <div class="section">
+        <div class="about-agent">
+          <h4 class="agent-header mb-3">About</h4>
+          <div class="agent-info">
+            <p>
+              Our area of focus is the Real Estate business which has existed from time immemorial.
+              Overtime, the Business has grown into amass of wealth across nations with evolving
+              business models. For instance, in sub-sahara Africa, the Real Estate business is fast
+              developing and becoming the main stream of income to many.
+            </p>
+            <p>
+              The Real Estate business with its innumerable opportunities leaves an assurance of
+              wealth, in as much as human must always NEED a shelter to reside.
+            </p>
+            <p>
+              As it continues to develop in Africa, we deem it wise to tap into this wealth by
+              easing the burden of rent payments as well as property management via our web and
+              mobile application.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="agent-listing">
+      <div class="section">
+        <p class="agent-listing-results">Results 1 - 5 of 5</p>
+        <div class="line mt-2 mb-2"></div>
+        <q-select
+          :options="['All', 'Sale', 'Sold', 'Rent']"
+          outlined
+          :color="colours.wine"
+          dense
+          v-model="agentListingFilter"
+          class="app-select"
+        />
+      </div>
     </section>
   </section>
   <AppModal
@@ -133,7 +181,9 @@ import DownCaret from 'src/components/svg/down-caret.vue'
 import EmailRounded from 'src/components/svg/email-rounded.vue'
 import NavigateNextCaret from 'src/components/svg/navigate-next-caret.vue'
 import PhoneCall from 'src/components/svg/phone-call.vue'
+import StarIcon from 'src/components/svg/star-icon.vue'
 import WhatsappIcon from 'src/components/svg/whatsapp-icon.vue'
+import AppAgentMember from 'src/components/ui/AppAgentMember.vue'
 import AppModal from 'src/components/ui/AppModal.vue'
 import { isFormComplete } from 'src/helpers'
 import { colours } from 'src/helpers/stylesheet'
@@ -156,6 +206,13 @@ const toggleReportAgentModal = () => {
   }
 }
 const isReportAgentFormComplete = computed(() => isFormComplete(reportAgentForm))
+
+const agentListingFilter = ref('All')
+
+const showAgentMembers = ref(false)
+const toggleAgentMembers = () => {
+  showAgentMembers.value = !showAgentMembers.value
+}
 </script>
 
 <style scoped lang="scss">

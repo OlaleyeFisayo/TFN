@@ -23,6 +23,16 @@ const routes = [
             name: 'agentDetails',
             component: () => import('pages/Agent/AgentDetail/AgentDetailsIndex.vue'),
           },
+          {
+            path: 'home-improvement',
+            name: 'home-improvement',
+            component: () => import('pages/HomeImprovement/HomeImprovementIndex.vue'),
+          },
+          {
+            path: 'property-manager',
+            name: 'property-manager',
+            component: () => import('pages/PropertyManager/PropertyManagerIndex.vue'),
+          },
         ],
       },
       {
