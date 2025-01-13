@@ -9,7 +9,7 @@
           <p class="agent-name mt-4">Abuja LandLady</p>
           <p class="agent-website mt-2">Abjidy.tfnproperties.com</p>
           <div class="reviews mt-2">
-            <StarIcon v-for="i in 5" :key="i" />
+            <StarIcon v-for="i in 5" :key="i" color="#FFA800" />
             <p>5.0 . 29 Reviews</p>
           </div>
           <p class="agent-address mt-2">
@@ -94,6 +94,130 @@
           v-model="agentListingFilter"
           class="app-select"
         />
+      </div>
+    </section>
+    <section class="agent-property">
+      <div class="section">
+        <AppGrid2>
+          <AppProperty />
+          <AppProperty />
+          <AppProperty />
+          <AppProperty />
+        </AppGrid2>
+      </div>
+    </section>
+    <section class="agent-property-pagination">
+      <div class="section">
+        <q-pagination
+          v-model="agentListingPagination"
+          :color="colours.grey"
+          :max="10"
+          :max-pages="4"
+          :boundary-numbers="false"
+          :text-color="colours.white"
+          direction-links
+          unelevated
+          :active-color="colours.wine"
+        />
+      </div>
+    </section>
+    <section class="agent-ratings">
+      <div class="section">
+        <h5 class="header">Ratings & Reviews (54)</h5>
+        <div class="flex-container">
+          <div>
+            <q-input
+              v-model="agentRating"
+              outlined
+              type="textarea"
+              :color="colours.wine"
+              placeholder="Write a review"
+              class="mt-3"
+            />
+          </div>
+          <div>
+            <p class="mt-3 review">How likely are you to recommend Home?</p>
+            <AppStars color="#7e1416" class="mt-1" />
+            <div class="other-traits">
+              <p>Local Knowledge</p>
+              <AppStars color="#7e1416" />
+            </div>
+            <div class="other-traits">
+              <p>Process Expertise</p>
+              <AppStars color="#7e1416" />
+            </div>
+            <div class="other-traits">
+              <p>Responsiveness</p>
+              <AppStars color="#7e1416" />
+            </div>
+            <div class="other-traits">
+              <p>Negotiation Skills</p>
+              <AppStars color="#7e1416" />
+            </div>
+            <q-btn
+              class="mt-2"
+              label="Send Review"
+              :color="colours.wine"
+              no-caps
+              padding="0.5rem 5rem"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="review-filter">
+      <div class="section">
+        <div class="filterOption mb-3">
+          <p class="label">Filter by</p>
+          <q-select
+            :options="['All Reviews']"
+            outlined
+            :color="colours.wine"
+            dense
+            v-model="reviewFilter"
+            class="app-select"
+          />
+        </div>
+        <div class="filterOption mb-3">
+          <p class="label">Sort by</p>
+          <q-select
+            :options="['Newest first']"
+            outlined
+            :color="colours.wine"
+            dense
+            v-model="reviewSort"
+            class="app-select"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="review">
+      <div class="section">
+        <AppReview />
+        <AppReview />
+        <AppReview />
+        <AppReview />
+      </div>
+    </section>
+    <section class="agent-property-pagination">
+      <div class="section">
+        <q-pagination
+          v-model="agentListingPagination"
+          :color="colours.grey"
+          :max="10"
+          :max-pages="4"
+          :boundary-numbers="false"
+          :text-color="colours.white"
+          direction-links
+          unelevated
+          :active-color="colours.wine"
+        />
+      </div>
+    </section>
+    <section class="service-area">
+      <div class="section">
+        <h5 class="title">Service areas</h5>
+        <h6>Lagos, Nigeria</h6>
       </div>
     </section>
   </section>
@@ -184,7 +308,11 @@ import PhoneCall from 'src/components/svg/phone-call.vue'
 import StarIcon from 'src/components/svg/star-icon.vue'
 import WhatsappIcon from 'src/components/svg/whatsapp-icon.vue'
 import AppAgentMember from 'src/components/ui/AppAgentMember.vue'
+import AppGrid2 from 'src/components/ui/AppGrid2.vue'
 import AppModal from 'src/components/ui/AppModal.vue'
+import AppProperty from 'src/components/ui/AppProperty.vue'
+import AppReview from 'src/components/ui/AppReview.vue'
+import AppStars from 'src/components/ui/AppStars.vue'
 import { isFormComplete } from 'src/helpers'
 import { colours } from 'src/helpers/stylesheet'
 import { computed, reactive, ref } from 'vue'
@@ -213,6 +341,13 @@ const showAgentMembers = ref(false)
 const toggleAgentMembers = () => {
   showAgentMembers.value = !showAgentMembers.value
 }
+
+const agentListingPagination = ref(1)
+
+const agentRating = ref('')
+
+const reviewFilter = ref('All Reviews')
+const reviewSort = ref('Newest first')
 </script>
 
 <style scoped lang="scss">
