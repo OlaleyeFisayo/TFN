@@ -29,7 +29,11 @@ export const useUserStore = defineStore('user', {
         } else {
           this.error = error?.message || error
         }
-        toast.error(this.error)
+        if(error.status === 403) {
+          console.log(error)
+        } else {
+          toast.error(this.error)
+        }
         throw Error(this.error || 'Network Error')
       }
     },
