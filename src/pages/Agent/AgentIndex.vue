@@ -1,4 +1,5 @@
 <template>
+  <AppNavbar title="Agent" />
   <section class="agent-section">
     <div class="top section">
       <q-input
@@ -40,6 +41,7 @@
 
 <script setup lang="ts">
 import AppAgents from 'src/components/ui/AppAgents.vue'
+import AppNavbar from 'src/components/ui/AppNavbar.vue'
 import { colours } from 'src/helpers/stylesheet'
 import { ref } from 'vue'
 

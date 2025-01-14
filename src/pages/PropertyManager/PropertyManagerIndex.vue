@@ -1,4 +1,5 @@
 <template>
+  <AppNavbar title="Property Manager" />
   <section class="agent-section">
     <div class="top section">
       <q-input
@@ -39,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import AppNavbar from 'src/components/ui/AppNavbar.vue'
 import AppPropertyManager from 'src/components/ui/AppPropertyManager.vue'
 import { colours } from 'src/helpers/stylesheet'
 import { ref } from 'vue'

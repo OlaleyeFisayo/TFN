@@ -1,4 +1,5 @@
 <template>
+  <AppNavbar title="Home Improvement" />
   <section class="agent-section">
     <div class="top section">
       <q-input
@@ -40,6 +41,7 @@
 
 <script setup lang="ts">
 import AppHomeImprovement from 'src/components/ui/AppHomeImprovement.vue'
+import AppNavbar from 'src/components/ui/AppNavbar.vue'
 import { colours } from 'src/helpers/stylesheet'
 import { ref } from 'vue'
 

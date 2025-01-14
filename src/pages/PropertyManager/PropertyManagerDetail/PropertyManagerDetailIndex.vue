@@ -1,4 +1,5 @@
 <template>
+  <AppNavbar title="Property Manager" />
   <section class="agent-details-section">
     <section class="agent-detail">
       <div class="section">
@@ -219,6 +220,11 @@
       <div class="section">
         <h5 class="title">Service areas</h5>
         <h6>Lagos, Nigeria</h6>
+        <h6>Abeokuta, Ogun, Nigeria</h6>
+        <h6>Oyo, Nigeria</h6>
+        <h6>Enugu, Nigeria</h6>
+        <h6>River, Nigeria</h6>
+        <h6>Kano, Nigeria</h6>
       </div>
     </section>
   </section>
@@ -311,6 +317,7 @@ import WhatsappIcon from 'src/components/svg/whatsapp-icon.vue'
 import AppAgentMember from 'src/components/ui/AppAgentMember.vue'
 import AppGrid2 from 'src/components/ui/AppGrid2.vue'
 import AppModal from 'src/components/ui/AppModal.vue'
+import AppNavbar from 'src/components/ui/AppNavbar.vue'
 import AppProperty from 'src/components/ui/AppProperty.vue'
 import AppReview from 'src/components/ui/AppReview.vue'
 import AppStars from 'src/components/ui/AppStars.vue'

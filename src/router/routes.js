@@ -13,40 +13,6 @@ const routes = [
             path: 'home',
             component: () => import('pages/Home/HomeIndex.vue'),
           },
-          {
-            path: 'agent',
-            name: 'agent',
-            component: () => import('pages/Agent/AgentIndex.vue'),
-          },
-          {
-            path: 'agent/:id',
-            name: 'agentDetails',
-            component: () => import('pages/Agent/AgentDetail/AgentDetailsIndex.vue'),
-          },
-          {
-            path: 'home-improvement',
-            name: 'home-improvement',
-            component: () => import('pages/HomeImprovement/HomeImprovementIndex.vue'),
-          },
-          {
-            path: 'home-improvement/:id',
-            name: 'home-improvement-details',
-            component: () =>
-              import(
-                'pages/HomeImprovement/HomeImprovementDetails/HomeImprovementDetailsIndex.vue'
-              ),
-          },
-          {
-            path: 'property-manager',
-            name: 'property-manager',
-            component: () => import('pages/PropertyManager/PropertyManagerIndex.vue'),
-          },
-          {
-            path: 'property-manager/:id',
-            name: 'property-manager-details',
-            component: () =>
-              import('pages/PropertyManager/PropertyManagerDetail/PropertyManagerDetailIndex.vue'),
-          },
         ],
       },
       {
@@ -83,6 +49,38 @@ const routes = [
         path: 'calender',
         name: 'calender',
         component: () => import('pages/Calender/CalenderIndex.vue'),
+      },
+      {
+        path: 'agent',
+        name: 'agent',
+        component: () => import('pages/Agent/AgentIndex.vue'),
+      },
+      {
+        path: 'agent/:id',
+        name: 'agentDetails',
+        component: () => import('pages/Agent/AgentDetail/AgentDetailsIndex.vue'),
+      },
+      {
+        path: 'home-improvement',
+        name: 'home-improvement',
+        component: () => import('pages/HomeImprovement/HomeImprovementIndex.vue'),
+      },
+      {
+        path: 'home-improvement/:id',
+        name: 'home-improvement-details',
+        component: () =>
+          import('pages/HomeImprovement/HomeImprovementDetails/HomeImprovementDetailsIndex.vue'),
+      },
+      {
+        path: 'property-manager',
+        name: 'property-manager',
+        component: () => import('pages/PropertyManager/PropertyManagerIndex.vue'),
+      },
+      {
+        path: 'property-manager/:id',
+        name: 'property-manager-details',
+        component: () =>
+          import('pages/PropertyManager/PropertyManagerDetail/PropertyManagerDetailIndex.vue'),
       },
     ],
   },
