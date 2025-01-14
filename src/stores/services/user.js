@@ -29,7 +29,7 @@ export const useUserStore = defineStore('user', {
         } else {
           this.error = error?.message || error
         }
-        if(error.status === 403) {
+        if (error.status === 403) {
           console.log(error)
         } else {
           toast.error(this.error)

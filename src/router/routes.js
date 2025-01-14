@@ -82,6 +82,26 @@ const routes = [
         component: () =>
           import('pages/PropertyManager/PropertyManagerDetail/PropertyManagerDetailIndex.vue'),
       },
+      {
+        path: 'search',
+        name: 'search',
+        component: () => import('pages/Home/SearchResult/SearchResultIndex.vue'),
+      },
+      {
+        path: 'post-request',
+        name: 'post-request',
+        component: () => import('pages/PostRequest/PostRequestIndex.vue'),
+      },
+      {
+        path: 'rent-property',
+        name: 'rent-property',
+        component: () => import('pages/RentProperty/RentPropertyIndex.vue'),
+      },
+      {
+        path: 'buy-property',
+        name: 'buy-property',
+        component: () => import('pages/BuyProperty/BuyPropertyIndex.vue'),
+      },
     ],
   },
 

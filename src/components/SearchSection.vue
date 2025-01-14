@@ -78,7 +78,7 @@
         </q-btn>
       </div>
       <div class="center mt-4">
-        <q-btn class="app-button primary" label="Search" />
+        <q-btn class="app-button primary" label="Search" to="/search" />
       </div>
     </main>
   </div>
