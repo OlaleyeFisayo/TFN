@@ -59,6 +59,10 @@
     .reviews {
       display: flex;
       align-items: center;
+      gap: 0.5rem;
+      @media (max-width: 700px) {
+          justify-content: center;
+      }
       p {
         text-decoration: underline;
         margin: 0;
