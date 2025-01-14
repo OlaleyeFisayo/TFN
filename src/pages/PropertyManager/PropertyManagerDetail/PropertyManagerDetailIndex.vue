@@ -6,8 +6,8 @@
           <img src="assets/image/user-avatar.webp" alt="User image" loading="lazy" />
         </div>
         <div class="agent-details">
-          <p class="agent-name mt-4">Abuja LandLady</p>
-          <p class="agent-website mt-2">Abjidy.tfnproperties.com</p>
+          <p class="agent-name mt-4">@Tulph Property Management</p>
+          <p class="agent-website mt-2">tulphproperty.tfnproperties.com</p>
           <div class="reviews mt-2">
             <AppStars :width="20" color="yellow" :active-stars="5" />
             <p>5.0 . 29 Reviews</p>
@@ -29,11 +29,11 @@
               </div>
             </q-btn>
           </div>
-          <q-btn class="app-button primary mt-2" label="Email Agent" />
+          <q-btn class="app-button primary mt-2" label="Email Manager" />
 
           <div class="report-agent-container">
             <q-btn
-              label="Report Agent"
+              label="Report Manager"
               class="report-agent mt-2"
               no-caps
               flat
@@ -223,7 +223,7 @@
     </section>
   </section>
   <AppModal
-    title="Report Agent"
+    title="Report Manager"
     :persistent="true"
     :visible="showReportAgentModal"
     @close="toggleReportAgentModal"
@@ -352,5 +352,5 @@ const reviewSort = ref('Newest first')
 </script>
 
 <style scoped lang="scss">
-@import url('./AgentDetailsIndex.scss');
+@import url('./PropertyManagerDetailIndex.scss');
 </style>

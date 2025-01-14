@@ -29,9 +29,23 @@ const routes = [
             component: () => import('pages/HomeImprovement/HomeImprovementIndex.vue'),
           },
           {
+            path: 'home-improvement/:id',
+            name: 'home-improvement-details',
+            component: () =>
+              import(
+                'pages/HomeImprovement/HomeImprovementDetails/HomeImprovementDetailsIndex.vue'
+              ),
+          },
+          {
             path: 'property-manager',
             name: 'property-manager',
             component: () => import('pages/PropertyManager/PropertyManagerIndex.vue'),
+          },
+          {
+            path: 'property-manager/:id',
+            name: 'property-manager-details',
+            component: () =>
+              import('pages/PropertyManager/PropertyManagerDetail/PropertyManagerDetailIndex.vue'),
           },
         ],
       },

@@ -6,6 +6,10 @@
       Suite A10a, Plaza Wuse Zone 6 Abuja, Abuja, F.C.T, Nigeria.</span
     >
     <span class="more-details">
+      <q-icon name="language" size="23px" />
+      <p>https://tulphproperty.tfnproperties.com/</p>
+    </span>
+    <span class="more-details">
       <HomeWork color="black" />
       <RouterLink to="/property-manager/1">View Managers profile</RouterLink>
     </span>

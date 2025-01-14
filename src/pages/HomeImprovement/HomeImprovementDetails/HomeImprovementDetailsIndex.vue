@@ -6,8 +6,8 @@
           <img src="assets/image/user-avatar.webp" alt="User image" loading="lazy" />
         </div>
         <div class="agent-details">
-          <p class="agent-name mt-4">Abuja LandLady</p>
-          <p class="agent-website mt-2">Abjidy.tfnproperties.com</p>
+          <p class="agent-name mt-4">Tulph Property Management</p>
+          <p class="agent-website mt-2">GDH&p.tfnproperties.com</p>
           <div class="reviews mt-2">
             <AppStars :width="20" color="yellow" :active-stars="5" />
             <p>5.0 . 29 Reviews</p>
@@ -29,31 +29,16 @@
               </div>
             </q-btn>
           </div>
-          <q-btn class="app-button primary mt-2" label="Email Agent" />
+          <q-btn class="app-button primary mt-2" label="Email Specialist" />
 
           <div class="report-agent-container">
             <q-btn
-              label="Report Agent"
+              label="Report Specialist"
               class="report-agent mt-2"
               no-caps
               flat
               @click="toggleReportAgentModal"
             />
-          </div>
-          <div class="mt-2 agent-members" v-if="showAgentMembers">
-            <AppAgentMember />
-            <AppAgentMember />
-            <AppAgentMember />
-            <AppAgentMember />
-          </div>
-          <div class="report-agent-container mt-2">
-            <q-btn no-caps color="white" :text-color="colours.wine" @click="toggleAgentMembers">
-              <div class="space-button">
-                <span>Our Members</span>
-                <UpCaret color="#7e1416" v-if="showAgentMembers" />
-                <DownCaret color="#7e1416" v-else />
-              </div>
-            </q-btn>
           </div>
         </div>
       </div>
@@ -223,7 +208,7 @@
     </section>
   </section>
   <AppModal
-    title="Report Agent"
+    title="Report Specialist"
     :persistent="true"
     :visible="showReportAgentModal"
     @close="toggleReportAgentModal"
@@ -287,7 +272,7 @@
         </div>
         <q-btn
           class="app-button primary"
-          label="Report Agent"
+          label="Report Specialist"
           no-caps
           :disable="isReportAgentFormComplete"
         >
@@ -302,13 +287,10 @@
 
 <script setup lang="ts">
 import ContactIcon from 'src/components/svg/contact-icon.vue'
-import DownCaret from 'src/components/svg/down-caret.vue'
 import EmailRounded from 'src/components/svg/email-rounded.vue'
 import NavigateNextCaret from 'src/components/svg/navigate-next-caret.vue'
 import PhoneCall from 'src/components/svg/phone-call.vue'
-import UpCaret from 'src/components/svg/up-caret.vue'
 import WhatsappIcon from 'src/components/svg/whatsapp-icon.vue'
-import AppAgentMember from 'src/components/ui/AppAgentMember.vue'
 import AppGrid2 from 'src/components/ui/AppGrid2.vue'
 import AppModal from 'src/components/ui/AppModal.vue'
 import AppProperty from 'src/components/ui/AppProperty.vue'
@@ -338,11 +320,6 @@ const isReportAgentFormComplete = computed(() => isFormComplete(reportAgentForm)
 
 const agentListingFilter = ref('All')
 
-const showAgentMembers = ref(false)
-const toggleAgentMembers = () => {
-  showAgentMembers.value = !showAgentMembers.value
-}
-
 const agentListingPagination = ref(1)
 
 const agentRating = ref('')
@@ -352,5 +329,5 @@ const reviewSort = ref('Newest first')
 </script>
 
 <style scoped lang="scss">
-@import url('./AgentDetailsIndex.scss');
+@import url('./HomeImprovementDetailsIndex.scss');
 </style>

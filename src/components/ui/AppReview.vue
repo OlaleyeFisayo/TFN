@@ -2,7 +2,7 @@
   <div class="app-review">
     <div class="from">
       <p class="info">4/3/2022 - fisayoOlaleye</p>
-      <AppStars color="#7e1416" />
+      <AppStars :width="25" color="negative" :active-stars="4" />
     </div>
     <p class="property-bought">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus quibusdam cumque

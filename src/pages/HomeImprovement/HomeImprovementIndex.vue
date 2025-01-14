@@ -32,8 +32,8 @@
       <AppHomeImprovement />
     </div>
     <div class="mt-4 section pagination">
-      <q-btn no-caps :color="colours.wine">Previous</q-btn>
-      <q-btn label="Next" no-caps :color="colours.wine" />
+      <q-btn no-caps :color="colours.wine" label="Previous" icon="arrow_circle_left"></q-btn>
+      <q-btn label="Next" no-caps :color="colours.wine" icon-right="arrow_circle_right" />
     </div>
   </section>
 </template>

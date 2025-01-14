@@ -5,10 +5,16 @@
       <LocationIcon color="black" />
       No 6, Balogun Avenue Off Arobaba Idimu Lagos State, Lagos States, Nigeria.</span
     >
-    <span class="more-details">
-      <HomeWork color="black" />
-      <RouterLink to="/home-improvement/1">View specialist profile</RouterLink>
-    </span>
+    <div class="flex-container">
+      <span class="more-details">
+        <HomeWork color="black" />
+        <RouterLink to="/home-improvement/1">View specialist profile</RouterLink>
+      </span>
+      <span class="more-details">
+        <BusinessIcon color="black" />
+        <RouterLink to="/home-improvement/1">Interior Design</RouterLink>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -16,6 +22,7 @@
 import { RouterLink } from 'vue-router'
 import HomeWork from '../svg/home-work.vue'
 import LocationIcon from '../svg/location-icon.vue'
+import BusinessIcon from '../svg/business-icon.vue'
 </script>
 
 <style scoped lang="scss">
@@ -31,6 +38,11 @@ import LocationIcon from '../svg/location-icon.vue'
     font-weight: 700;
   }
 
+  .flex-container {
+    display: flex;
+    gap: 1rem;
+  }
+
   .more-details {
     a {
       color: var(--black) !important;
@@ -42,7 +54,7 @@ import LocationIcon from '../svg/location-icon.vue'
   .more-details {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
   }
 }
 </style>
