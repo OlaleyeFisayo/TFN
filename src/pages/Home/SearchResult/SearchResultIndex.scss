@@ -12,13 +12,18 @@ section {
 
 .quick-filter {
   .section {
-    background: var(--grey5);
-    border: 1px solid var(--grey);
-    padding: 1rem 1.5rem;
-
     .title {
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--grey);
+      background: var(--grey5);
       font-size: 1rem;
       font-weight: 500;
+    }
+
+    .filter-options {
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--grey);
+      background-color: inherit;
     }
   }
 }

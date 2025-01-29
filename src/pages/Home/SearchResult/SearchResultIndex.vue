@@ -8,7 +8,18 @@
   <section class="quick-filter">
     <div class="section">
       <h6 class="title">Quick Filters</h6>
-      <div class="filter-options"></div>
+      <div class="filter-options">
+        <AppQuickFilter
+          :options="[
+            { label: 'Flats', value: 'flats' },
+            { label: 'Commercial Property', value: 'commercial_property' },
+            { label: 'Land', value: 'land' },
+            { label: 'Event Centres/Venues', value: 'event_centres_venues' },
+            { label: 'Houses', value: 'houses' },
+          ]"
+          @@update:v-model="(val) => updateFilterByType(val)"
+        />
+      </div>
     </div>
   </section>
   <section class="listing">
@@ -63,10 +74,16 @@ import YoutubeIcon from 'src/components/svg/youtube-icon.vue'
 import AppGrid2 from 'src/components/ui/AppGrid2.vue'
 import AppNavbar from 'src/components/ui/AppNavbar.vue'
 import AppProperty from 'src/components/ui/AppProperty.vue'
+import AppQuickFilter from 'src/components/ui/AppQuickFilter.vue'
 import { colours } from 'src/helpers/stylesheet'
 import { ref } from 'vue'
 
 const listingFilter = ref('Default')
+const quickFilterByType = ref('')
+const updateFilterByType = (value) => {
+  quickFilterByType.value = value
+  console.log(quickFilterByType.value)
+}
 </script>
 
 <style lang="scss" scoped>
