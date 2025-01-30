@@ -9,16 +9,7 @@
     <div class="section">
       <h6 class="title">Quick Filters</h6>
       <div class="filter-options">
-        <AppQuickFilter
-          :options="[
-            { label: 'Flats', value: 'flats' },
-            { label: 'Commercial Property', value: 'commercial_property' },
-            { label: 'Land', value: 'land' },
-            { label: 'Event Centres/Venues', value: 'event_centres_venues' },
-            { label: 'Houses', value: 'houses' },
-          ]"
-          @@update:v-model="(val) => updateFilterByType(val)"
-        />
+        <AppQuickFilter @@update:v-model="(val) => updateFilter(val)" />
       </div>
     </div>
   </section>
@@ -76,13 +67,18 @@ import AppNavbar from 'src/components/ui/AppNavbar.vue'
 import AppProperty from 'src/components/ui/AppProperty.vue'
 import AppQuickFilter from 'src/components/ui/AppQuickFilter.vue'
 import { colours } from 'src/helpers/stylesheet'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 const listingFilter = ref('Default')
-const quickFilterByType = ref('')
-const updateFilterByType = (value) => {
-  quickFilterByType.value = value
-  console.log(quickFilterByType.value)
+
+const quickFilterByType = reactive({
+  byType: '',
+  byLocation: '',
+})
+const updateFilter = (value) => {
+  const { byType, byLocation } = value
+  quickFilterByType.byType = byType
+  quickFilterByType.byLocation = byLocation
 }
 </script>
 
