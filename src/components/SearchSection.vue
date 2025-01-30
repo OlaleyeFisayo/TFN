@@ -8,7 +8,7 @@
           :toggle-color="colours.wine"
           :color="colours.black"
           spread
-          no-caps=""
+          no-caps
         />
       </div>
       <div class="search-box mt-4">

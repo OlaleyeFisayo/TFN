@@ -74,11 +74,13 @@ const listingFilter = ref('Default')
 const quickFilterByType = reactive({
   byType: '',
   byLocation: '',
+  moreFilter: [],
 })
 const updateFilter = (value) => {
-  const { byType, byLocation } = value
+  const { byType, byLocation, moreFilter } = value
   quickFilterByType.byType = byType
   quickFilterByType.byLocation = byLocation
+  quickFilterByType.moreFilter = moreFilter
 }
 </script>
 

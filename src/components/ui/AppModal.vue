@@ -67,7 +67,7 @@ watch(
 
 <style scoped lang="scss">
 .dialog-card {
-  max-width: 336px;
+  max-width: 400px;
   width: 100%;
   padding: 0;
 }

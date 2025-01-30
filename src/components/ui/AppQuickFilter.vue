@@ -22,26 +22,75 @@
         class="btn-toggle"
       />
     </div>
-    <q-btn
-      no-caps
-      unelevated
-      @click="toggleMoreOptions"
-      :text-color="colours.wine"
-      dense
-      padding="0"
-      :label="moreOptions ? 'Show less' : 'Show more'"
-      class="mt-2"
-    />
+    <div>
+      <q-btn
+        no-caps
+        unelevated
+        @click="toggleMoreOptions"
+        :text-color="colours.wine"
+        dense
+        padding="0"
+        :label="moreOptions ? 'Show less' : 'Show more'"
+        class="mt-2"
+      />
+    </div>
+    <div>
+      <q-btn
+        no-caps
+        unelevated
+        @click="toggleFilterModal"
+        :text-color="colours.wine"
+        dense
+        padding="0"
+        label="More Filter Options"
+        class="mt-2 more-filter-options"
+      />
+    </div>
   </div>
+  <AppModal
+    title="More Filter Options"
+    :persistent="true"
+    :visible="moreFilterModal"
+    @close="toggleFilterModal"
+  >
+    <template #body>
+      <div class="form mt-4">
+        <div class="item" v-for="form in moreFilterValues" :key="form.tag">
+          <span class="label">{{ form.label }}</span>
+          <template v-if="form.type === 'text'">
+            <q-input
+              dense
+              outlined
+              v-model="form.value"
+              :placeholder="form.placeholder"
+              :color="colours.wine"
+            />
+          </template>
+          <template v-else>
+            <q-select
+              v-model="form.value"
+              :options="form.options"
+              outlined
+              :color="colours.wine"
+              dense
+            />
+          </template>
+        </div>
+      </div>
+    </template>
+  </AppModal>
 </template>
 
 <script setup>
 import { colours } from 'src/helpers/stylesheet'
 import { reactive, ref, watch } from 'vue'
+import AppModal from './AppModal.vue'
+import { convertToObject } from 'src/helpers'
 
 const model = reactive({
   byType: '',
   byLocation: '',
+  moreFilter: [],
 })
 const emit = defineEmits(['@update:v-model'])
 
@@ -101,10 +150,143 @@ const toggleMoreOptions = () => {
   moreOptions.value = !moreOptions.value
   if (moreOptions.value) {
     options.byLocation = [...byLocationOptions, ...extraByLocationOptions]
-  } else  {
+  } else {
     options.byLocation = byLocationOptions
   }
 }
+
+const moreFilterModal = ref(false)
+const toggleFilterModal = () => {
+  moreFilterModal.value = !moreFilterModal.value
+}
+const moreFilterValues = ref([
+  {
+    label: 'Type',
+    tag: 'type',
+    options: ['All Types', 'Flat/Apartment', 'House', 'Land', 'Commercial Property'],
+    value: 'All Types',
+  },
+  {
+    label: 'Bedrooms',
+    tag: 'bedrooms',
+    options: ['Any', '1', '2', '3', '4', '5', '6+'],
+    value: 'Any',
+  },
+  {
+    label: 'Min Price',
+    tag: 'min_price',
+    options: [
+      'No Min',
+      '₦250,000',
+      '₦500,000',
+      '₦750,000',
+      '₦1 Million',
+      '₦2 Million',
+      '₦5 Million',
+      '₦10 Million',
+      '₦20 Million',
+      '₦30 Million',
+      '₦40 Million',
+      '₦50 Million',
+      '₦60 Million+',
+    ],
+    value: 'No Min',
+  },
+  {
+    label: 'Max Price',
+    tag: 'max_price',
+    options: [
+      'No Max',
+      '₦250,000',
+      '₦500,000',
+      '₦750,000',
+      '₦1 Million',
+      '₦2 Million',
+      '₦5 Million',
+      '₦10 Million',
+      '₦20 Million',
+      '₦30 Million',
+      '₦40 Million',
+      '₦50 Million',
+      '₦60 Million+',
+    ],
+    value: 'No Max',
+  },
+  {
+    label: 'Listing Type',
+    tag: 'listing_type',
+    options: ['Anyone', 'Landlord', 'Agent', 'Property Manager', 'Owner'],
+    value: 'Anyone',
+  },
+  {
+    label: 'Property Status',
+    tag: 'property_status',
+    options: [
+      'Any',
+      'Coming Soon',
+      ' Improved',
+      'Accepting Backup offers',
+      'Pending & Under Contract',
+    ],
+    value: 'Any',
+  },
+  {
+    label: 'Parking Spot',
+    tag: 'parking_spot',
+    options: ['Any', '1', '2', '3', '4', '5+'],
+    value: 'Any',
+  },
+  {
+    label: 'Square feet',
+    tag: 'square_feet',
+    type: 'text',
+    value: null,
+    placeholder: 'e.g 1',
+  },
+  {
+    label: 'Year Built',
+    tag: 'year_built',
+    options: ['Any', '1', '2', '3', '4', '5+'],
+    value: 'Any',
+  },
+  {
+    label: 'No of Stories',
+    tag: 'no_of_stories',
+    options: ['Any', '1', '2', '3', '4', '5+'],
+    value: 'Any',
+  },
+  {
+    label: 'Other Amenities',
+    tag: 'other_amenities',
+    options: ['Any', 'Air Condition', 'Pool', 'Water front', 'Others'],
+    value: 'Any',
+  },
+  {
+    label: 'Day Listed',
+    tag: 'day_listed',
+    options: ['Any', 'This week', 'Last Week', 'Last Month', 'Last Year'],
+    value: 'Any',
+  },
+  {
+    label: 'Furnishing',
+    tag: 'furnishing',
+    options: ['Any', 'Furnished', 'Not Furnished'],
+    value: 'Any',
+  },
+])
+
+watch(
+  () => moreFilterValues,
+  (n) => {
+    if (n) {
+      const object = convertToObject(moreFilterValues.value)
+      model.moreFilter.push(object)
+    }
+  },
+  {
+    deep: true,
+  },
+)
 
 watch(
   () => model,
@@ -127,5 +309,10 @@ watch(
 .btn-toggle {
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.form {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
 }
 </style>
